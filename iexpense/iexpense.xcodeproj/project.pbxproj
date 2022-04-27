@@ -13,7 +13,19 @@
 		B47E159728197626001A374B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B47E159628197626001A374B /* Preview Assets.xcassets */; };
 		B47E159F28197A70001A374B /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = B47E159E28197A70001A374B /* Realm */; };
 		B47E15A128197A70001A374B /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = B47E15A028197A70001A374B /* RealmSwift */; };
+		B49C94062819B92600D77C46 /* NumberPadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B49C94052819B92600D77C46 /* NumberPadView.swift */; };
+		B49C940E2819C9E200D77C46 /* iexpenseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B49C940D2819C9E200D77C46 /* iexpenseTests.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		B49C940F2819C9E200D77C46 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B47E158428197625001A374B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B47E158B28197625001A374B;
+			remoteInfo = iexpense;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		B47E158C28197625001A374B /* iexpense.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iexpense.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -21,6 +33,9 @@
 		B47E159128197625001A374B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		B47E159328197626001A374B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B47E159628197626001A374B /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		B49C94052819B92600D77C46 /* NumberPadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberPadView.swift; sourceTree = "<group>"; };
+		B49C940B2819C9E200D77C46 /* iexpenseTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iexpenseTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B49C940D2819C9E200D77C46 /* iexpenseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iexpenseTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,6 +48,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		B49C94082819C9E200D77C46 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -40,6 +62,7 @@
 			isa = PBXGroup;
 			children = (
 				B47E158E28197625001A374B /* iexpense */,
+				B49C940C2819C9E200D77C46 /* iexpenseTests */,
 				B47E158D28197625001A374B /* Products */,
 			);
 			sourceTree = "<group>";
@@ -48,6 +71,7 @@
 			isa = PBXGroup;
 			children = (
 				B47E158C28197625001A374B /* iexpense.app */,
+				B49C940B2819C9E200D77C46 /* iexpenseTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -57,6 +81,7 @@
 			children = (
 				B47E158F28197625001A374B /* iexpenseApp.swift */,
 				B47E159128197625001A374B /* ContentView.swift */,
+				B49C94052819B92600D77C46 /* NumberPadView.swift */,
 				B47E159328197626001A374B /* Assets.xcassets */,
 				B47E159528197626001A374B /* Preview Content */,
 			);
@@ -69,6 +94,14 @@
 				B47E159628197626001A374B /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		B49C940C2819C9E200D77C46 /* iexpenseTests */ = {
+			isa = PBXGroup;
+			children = (
+				B49C940D2819C9E200D77C46 /* iexpenseTests.swift */,
+			);
+			path = iexpenseTests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -95,6 +128,24 @@
 			productReference = B47E158C28197625001A374B /* iexpense.app */;
 			productType = "com.apple.product-type.application";
 		};
+		B49C940A2819C9E200D77C46 /* iexpenseTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B49C94112819C9E200D77C46 /* Build configuration list for PBXNativeTarget "iexpenseTests" */;
+			buildPhases = (
+				B49C94072819C9E200D77C46 /* Sources */,
+				B49C94082819C9E200D77C46 /* Frameworks */,
+				B49C94092819C9E200D77C46 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B49C94102819C9E200D77C46 /* PBXTargetDependency */,
+			);
+			name = iexpenseTests;
+			productName = iexpenseTests;
+			productReference = B49C940B2819C9E200D77C46 /* iexpenseTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -107,6 +158,10 @@
 				TargetAttributes = {
 					B47E158B28197625001A374B = {
 						CreatedOnToolsVersion = 13.2.1;
+					};
+					B49C940A2819C9E200D77C46 = {
+						CreatedOnToolsVersion = 13.2.1;
+						TestTargetID = B47E158B28197625001A374B;
 					};
 				};
 			};
@@ -127,6 +182,7 @@
 			projectRoot = "";
 			targets = (
 				B47E158B28197625001A374B /* iexpense */,
+				B49C940A2819C9E200D77C46 /* iexpenseTests */,
 			);
 		};
 /* End PBXProject section */
@@ -141,6 +197,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		B49C94092819C9E200D77C46 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -149,11 +212,28 @@
 			buildActionMask = 2147483647;
 			files = (
 				B47E159228197625001A374B /* ContentView.swift in Sources */,
+				B49C94062819B92600D77C46 /* NumberPadView.swift in Sources */,
 				B47E159028197625001A374B /* iexpenseApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		B49C94072819C9E200D77C46 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B49C940E2819C9E200D77C46 /* iexpenseTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		B49C94102819C9E200D77C46 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B47E158B28197625001A374B /* iexpense */;
+			targetProxy = B49C940F2819C9E200D77C46 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		B47E159828197626001A374B /* Debug */ = {
@@ -330,6 +410,42 @@
 			};
 			name = Release;
 		};
+		B49C94122819C9E200D77C46 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = FL29S3YYFY;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tantt.iexpenseTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/iexpense.app/iexpense";
+			};
+			name = Debug;
+		};
+		B49C94132819C9E200D77C46 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = FL29S3YYFY;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tantt.iexpenseTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/iexpense.app/iexpense";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -347,6 +463,15 @@
 			buildConfigurations = (
 				B47E159B28197626001A374B /* Debug */,
 				B47E159C28197626001A374B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B49C94112819C9E200D77C46 /* Build configuration list for PBXNativeTarget "iexpenseTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B49C94122819C9E200D77C46 /* Debug */,
+				B49C94132819C9E200D77C46 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

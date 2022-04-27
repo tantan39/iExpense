@@ -63,13 +63,12 @@ struct ContentView: View {
     
     var body: some View {
         VStack {
-            
             List {
                 ForEach (items, id: \.id) { item in
                     HStack {
-                        Text("$\(item.value)")
-                        Spacer()
                         Text(item.category.icon)
+                        let value = String(format: "$%.2f", item.value)
+                        Text(value)
                     }
                 }
             }
