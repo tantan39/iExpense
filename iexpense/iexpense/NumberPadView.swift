@@ -21,6 +21,7 @@ struct NumberPadView: View {
                     .font(.largeTitle)
                     .padding(.leading, -4)
             }
+            .padding(.top, 30)
                 
             LazyVGrid(columns: colums) {
                 ForEach($viewModel.items, id: \.self) { item in
@@ -45,6 +46,8 @@ struct NumberPadView: View {
                     }
                 }
             }
+            
+            Spacer()
         }
     }
 
