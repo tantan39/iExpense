@@ -24,13 +24,25 @@ struct NumberPadView: View {
                 
             LazyVGrid(columns: colums) {
                 ForEach($viewModel.items, id: \.self) { item in
-                    Text("\(item.wrappedValue.title)")
-                        .font(.largeTitle)
-                        .frame(width: 100, height: 100)
-                        .background(Color.teal)
-                        .onTapGesture {
-                            self.viewModel.updateValue(item.wrappedValue)
-                        }
+                    if item.wrappedValue.type == .erase {
+                        Text("\(item.wrappedValue.title)")
+                            .font(.largeTitle)
+                            .frame(width: 100, height: 100)
+                            .background(Color.teal)
+                            .foregroundColor(viewModel.value.isEmpty ? .gray : .black)
+                            .disabled(viewModel.value.isEmpty)
+                            .onTapGesture {
+                                self.viewModel.updateValue(item.wrappedValue)
+                            }
+                    } else {
+                        Text("\(item.wrappedValue.title)")
+                            .font(.largeTitle)
+                            .frame(width: 100, height: 100)
+                            .background(Color.teal)
+                            .onTapGesture {
+                                self.viewModel.updateValue(item.wrappedValue)
+                            }
+                    }
                 }
             }
         }
