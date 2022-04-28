@@ -26,6 +26,7 @@ class NumberPadViewModel: ObservableObject {
     @Published var value: String = ""
     @Published var enableCent: Bool = false
     @Published var centNumberCount: Int = 0
+    private let inputMaxCount = 9
     
     func updateValue(_ item: NumberPadItem) {
         switch item.type {
@@ -37,6 +38,7 @@ class NumberPadViewModel: ObservableObject {
                 }
                 return
             } else {
+                guard value.count < inputMaxCount else { return }
                 value += "\(item.title)"
             }
             
@@ -46,6 +48,7 @@ class NumberPadViewModel: ObservableObject {
             value += "\(item.title)"
             enableCent.toggle()
         case .erase:
+            guard !value.isEmpty else { return }
             value.removeLast()
             if value.contains(".") {
                 enableCent = true
@@ -56,4 +59,16 @@ class NumberPadViewModel: ObservableObject {
             }
         }
     }
+}
+
+extension String{
+     func toCurrencyFormat() -> String {
+        if let doubleValue = Double(self){
+           let numberFormatter = NumberFormatter()
+           numberFormatter.locale = Locale(identifier: "en_US")
+           numberFormatter.numberStyle = NumberFormatter.Style.currency
+           return numberFormatter.string(from: NSNumber(value: doubleValue)) ?? ""
+      }
+    return ""
+  }
 }

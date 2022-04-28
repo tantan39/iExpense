@@ -15,8 +15,12 @@ struct NumberPadView: View {
     
     var body: some View {
         VStack {
-            Text(viewModel.value)
-                .font(.largeTitle)
+            HStack {
+                Text(viewModel.value.isEmpty ? "$0.00" : viewModel.value.toCurrencyFormat())
+                    .fontWeight(.semibold)
+                    .font(.largeTitle)
+                    .padding(.leading, -4)
+            }
                 
             LazyVGrid(columns: colums) {
                 ForEach($viewModel.items, id: \.self) { item in
