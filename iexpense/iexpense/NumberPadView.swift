@@ -7,24 +7,8 @@
 
 import SwiftUI
 
-struct NumberPadItem: Hashable {
-    let title: String
-    let type: PadItemType
-    
-    enum PadItemType {
-        case number
-        case dot
-        case erase
-    }
-}
-
-struct NumberPadView: View {
-    @State var value: String = " "
-    var colums = [GridItem(.adaptive(minimum: 100, maximum: 100), spacing: 10, alignment: .center)]
-    @State var enableCent: Bool = false
-    @State var centNumberCount: Int = 0
-    
-    var items: [NumberPadItem] = [
+class NumberPadViewModel: ObservableObject {
+    @Published var items: [NumberPadItem] = [
         NumberPadItem(title: "1", type: .number),
         NumberPadItem(title: "2", type: .number),
         NumberPadItem(title: "3", type: .number),
@@ -38,24 +22,10 @@ struct NumberPadView: View {
         NumberPadItem(title: "0", type: .number),
         NumberPadItem(title: "⌫", type: .erase)
     ]
-    var body: some View {
-        VStack {
-            Text(value)
-                .font(.largeTitle)
-                
-            LazyVGrid(columns: colums) {
-                ForEach(items, id: \.self) { item in
-                    Text("\(item.title)")
-                        .font(.largeTitle)
-                        .frame(width: 100, height: 100)
-                        .background(Color.teal)
-                        .onTapGesture {
-                            updateValue(item)
-                        }
-                }
-            }
-        }
-    }
+    
+    @Published var value: String = ""
+    @Published var enableCent: Bool = false
+    @Published var centNumberCount: Int = 0
     
     func updateValue(_ item: NumberPadItem) {
         switch item.type {
@@ -71,7 +41,7 @@ struct NumberPadView: View {
             }
             
         case .dot:
-            guard !enableCent else { return }
+            guard !enableCent && value.count > 1 else { return }
             
             value += "\(item.title)"
             enableCent.toggle()
@@ -86,6 +56,33 @@ struct NumberPadView: View {
             }
         }
     }
+}
+
+struct NumberPadView: View {
+    
+    var colums = [GridItem(.adaptive(minimum: 100, maximum: 100), spacing: 10, alignment: .center)]
+    
+    @ObservedObject var viewModel = NumberPadViewModel()
+    
+    var body: some View {
+        VStack {
+            Text(viewModel.value)
+                .font(.largeTitle)
+                
+            LazyVGrid(columns: colums) {
+                ForEach($viewModel.items, id: \.self) { item in
+                    Text("\(item.wrappedValue.title)")
+                        .font(.largeTitle)
+                        .frame(width: 100, height: 100)
+                        .background(Color.teal)
+                        .onTapGesture {
+                            self.viewModel.updateValue(item.wrappedValue)
+                        }
+                }
+            }
+        }
+    }
+
 }
 
 struct NumberPadView_Previews: PreviewProvider {
