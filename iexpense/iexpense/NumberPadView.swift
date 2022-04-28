@@ -47,7 +47,6 @@ struct NumberPadView: View {
                 }
             }
             
-            Spacer()
         }
     }
 

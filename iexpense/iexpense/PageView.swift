@@ -11,7 +11,7 @@ import SwiftUI
 struct PageView: View {
     var body: some View {
         TabView {
-            NumberPadView()
+            HomeView()
             ExpenseListView()
         }
         .tabViewStyle(.page)
