@@ -24,14 +24,14 @@ class NumberPadViewModel: ObservableObject {
     ]
     
     @Published var value: String = ""
-    @Published var enableCent: Bool = false
+    @Published var hasCentValues: Bool = false
     @Published var centNumberCount: Int = 0
     private let inputMaxCount = 9
     
     func updateValue(_ item: NumberPadItem) {
         switch item.type {
         case .number:
-            if enableCent {
+            if hasCentValues {
                 if centNumberCount < 2 {
                     value += "\(item.title)"
                     centNumberCount += 1
@@ -43,18 +43,18 @@ class NumberPadViewModel: ObservableObject {
             }
             
         case .dot:
-            guard !enableCent && value.count > 1 else { return }
+            guard !hasCentValues && value.count > 1 else { return }
             
             value += "\(item.title)"
-            enableCent.toggle()
+            hasCentValues.toggle()
         case .erase:
             guard !value.isEmpty else { return }
             value.removeLast()
             if value.contains(".") {
-                enableCent = true
+                hasCentValues = true
                 centNumberCount -= 1
             } else {
-                enableCent = false
+                hasCentValues = false
                 centNumberCount = 0
             }
         }
