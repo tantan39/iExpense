@@ -6,26 +6,10 @@
 //
 
 import SwiftUI
-import RealmSwift
 import Combine
 
-class HomeViewModel: ObservableObject {
-    @ObservedResults(ExpenseModel.self) var items
-    
-    @Published var expenseValue: String = ""
-    @Published var note: String? = ""
-    @Published var categorySelected: ExpenseCategory = .other
-    @Published var date: Date = .init()
-    
-    func addExpense() {
-        let item = ExpenseModel(value: Double(expenseValue) ?? 0.0, category: categorySelected, date: date, note: note)
-        
-        $items.append(item)
-    }
-}
-
 struct HomeView: View {
-    @ObservedObject var viewModel: HomeViewModel = HomeViewModel()
+    @ObservedObject var viewModel: HomeViewViewModel = HomeViewViewModel()
     @ObservedObject var padViewModel: NumberPadViewModel = NumberPadViewModel()
     
     var body: some View {
