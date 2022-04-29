@@ -33,9 +33,9 @@ struct HomeView: View {
     @State var note: String? = ""
     @ObservedObject var padViewModel: NumberPadViewModel = NumberPadViewModel()
     @ObservedResults(ExpenseModel.self) var items
-        
+    @State var date1 = Date()
+    
     var body: some View {
-        let _ = print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!.path)
         VStack {
             NumberPadView(viewModel: padViewModel)
                 .padding(.bottom, 10)
@@ -51,7 +51,7 @@ struct HomeView: View {
                 }
                 .frame(height: 100)
             }
-            .padding(.leading)
+            .padding(.horizontal)
             
             HStack {
                 DatePickerButtonView(date: $date)

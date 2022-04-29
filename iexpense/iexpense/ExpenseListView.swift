@@ -11,7 +11,6 @@ import RealmSwift
 struct ExpenseListView: View {
     @State var expenseValue: String = ""
     @State var category: ExpenseCategory = .other
-    
     @ObservedResults(ExpenseModel.self) var items
     
     var body: some View {
