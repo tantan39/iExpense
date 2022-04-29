@@ -12,7 +12,7 @@ struct PageView: View {
     var body: some View {
         TabView {
             HomeView()
-            ExpenseListView()
+//            ExpenseListView()
         }
         .tabViewStyle(.page)
     }

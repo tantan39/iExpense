@@ -26,6 +26,8 @@ struct CategoryView: View {
 
 struct HomeView: View {
     @State var categorySelected: ExpenseCategory = .other
+    @State var date: Date = .init()
+    @State var visiblePicker: Bool = false
     
     var body: some View {
         VStack {
@@ -44,6 +46,27 @@ struct HomeView: View {
                 .frame(height: 100)
             }
             .padding(.leading)
+            
+            HStack {
+                DatePickerButtonView(date: $date)
+                    .frame(width: 60, height: 60)
+                
+                Button {
+                    
+                } label: {
+                    Text("Add for Today")
+                        .fontWeight(.bold)
+                        .font(.title3)
+                        .foregroundColor(.white)
+                        .frame(width: 300, height: 30)
+                        .padding()
+                }
+                .background(RoundedRectangle(cornerRadius: 10, style: .continuous)
+                                .foregroundColor(Color.accentColor))
+                
+                Spacer()
+            }
+            .padding()
             Spacer()
         }
     }
