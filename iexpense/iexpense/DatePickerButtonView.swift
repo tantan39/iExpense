@@ -17,7 +17,7 @@ struct DatePickerButtonView: View {
                 .labelsHidden()
             Image(systemName: "calendar")
                 .resizable()
-                .frame(width: 32, height: 32, alignment: .center)
+                .frame(width: 35, height: 35, alignment: .center)
                 .userInteractionDisabled()
         }
     }
