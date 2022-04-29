@@ -30,6 +30,7 @@ struct HomeView: View {
     var body: some View {
         VStack {
             NumberPadView()
+                .padding(.bottom, 10)
             ScrollView(.horizontal, showsIndicators: false) {
                 LazyHStack(spacing: 30) {
                     ForEach(ExpenseCategory.allCases, id: \.self) { category in
