@@ -25,28 +25,6 @@ struct ExpenseListView: View {
                     }
                 }
             }
-            
-            HStack {
-                TextField("New Item", text: $expenseValue)
-                    .textFieldStyle(.roundedBorder)
-                    .keyboardType(.numberPad)
-                
-                Picker("", selection: $category) {
-                    ForEach(ExpenseCategory.allCases, id: \.self) { cat in
-                        Text(cat.title)
-                            .tag(cat)
-                    }
-                }
-                .pickerStyle(.menu)
-
-                Button {
-                    let item = ExpenseModel(value: Double(expenseValue) ?? 0.0, category: category)
-                    $items.append(item)
-                } label: {
-                    Image(systemName: "plus.circle.fill")
-                }
-            }
-            .padding()
         }
     }
 }

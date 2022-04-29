@@ -6,13 +6,11 @@
 //
 
 import SwiftUI
-
 struct NumberPadView: View {
     
     var colums = [GridItem(.adaptive(minimum: 100, maximum: 100), spacing: 20, alignment: .center)]
     
-    @ObservedObject var viewModel = NumberPadViewModel()
-    
+    @ObservedObject var viewModel: NumberPadViewModel
     var body: some View {
         VStack {
             HStack {
@@ -49,12 +47,13 @@ struct NumberPadView: View {
             }
             
         }
+        
     }
 
 }
 
 struct NumberPadView_Previews: PreviewProvider {
     static var previews: some View {
-        NumberPadView()
+        NumberPadView(viewModel: NumberPadViewModel())
     }
 }

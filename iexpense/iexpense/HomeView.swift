@@ -6,6 +6,8 @@
 //
 
 import SwiftUI
+import RealmSwift
+import Combine
 
 struct CategoryView: View {
     var title: String
@@ -25,13 +27,17 @@ struct CategoryView: View {
 }
 
 struct HomeView: View {
+    @State var expenseValue: String = ""
     @State var categorySelected: ExpenseCategory = .other
     @State var date: Date = .init()
-    @State var visiblePicker: Bool = false
-    
+    @State var note: String? = ""
+    @ObservedObject var padViewModel: NumberPadViewModel = NumberPadViewModel()
+    @ObservedResults(ExpenseModel.self) var items
+        
     var body: some View {
+        let _ = print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!.path)
         VStack {
-            NumberPadView()
+            NumberPadView(viewModel: padViewModel)
                 .padding(.bottom, 10)
             ScrollView(.horizontal, showsIndicators: false) {
                 LazyHStack(spacing: 30) {
@@ -52,7 +58,9 @@ struct HomeView: View {
                     .frame(width: 60, height: 60)
                 
                 Button {
-                    
+                    let item = ExpenseModel(value: Double(expenseValue) ?? 0.0, category: categorySelected, date: date, note: note)
+                    $items.append(item)
+
                 } label: {
                     Text("Add for Today")
                         .fontWeight(.bold)
@@ -69,6 +77,10 @@ struct HomeView: View {
             .padding()
             Spacer()
         }
+        .onReceive(padViewModel.$value, perform: { value in
+            guard !value.isEmpty else { return }
+            expenseValue = value
+        })
     }
 }
 
