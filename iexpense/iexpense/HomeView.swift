@@ -9,23 +9,6 @@ import SwiftUI
 import RealmSwift
 import Combine
 
-struct CategoryView: View {
-    var title: String
-    @Binding var selected: Bool
-    
-    var body: some View {
-        HStack {
-            Text(title)
-                .fontWeight(.semibold)
-                .font(.headline)
-        }
-        .padding()
-        .background(
-            RoundedRectangle(cornerRadius: 10, style: .circular)
-                .foregroundColor(selected ? .yellow : .gray.opacity(0.5)))
-    }
-}
-
 struct HomeView: View {
     @State var expenseValue: String = ""
     @State var categorySelected: ExpenseCategory = .other
@@ -60,18 +43,17 @@ struct HomeView: View {
                 Button {
                     let item = ExpenseModel(value: Double(expenseValue) ?? 0.0, category: categorySelected, date: date, note: note)
                     $items.append(item)
+                    padViewModel.value = ""
 
                 } label: {
                     Text("Add for Today")
                         .fontWeight(.bold)
                         .font(.title3)
-                        .foregroundColor(.white)
                         .frame(width: 300, height: 30)
                         .padding()
                 }
-                .background(RoundedRectangle(cornerRadius: 10, style: .continuous)
-                                .foregroundColor(Color.accentColor))
-                
+                .buttonStyle(MainButtonStyle())
+                .disabled(padViewModel.value.isEmpty)
                 Spacer()
             }
             .padding()
