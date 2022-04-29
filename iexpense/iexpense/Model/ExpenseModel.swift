@@ -12,11 +12,15 @@ class ExpenseModel: Object, ObjectKeyIdentifiable {
     @Persisted(primaryKey: true) var id: ObjectId
     @Persisted var value: Double = 0.0
     @Persisted var category: ExpenseCategory = .other
+    @Persisted var date: Date
+    @Persisted var note: String?
     
-    convenience init(value: Double, category: ExpenseCategory) {
+    convenience init(value: Double, category: ExpenseCategory, date: Date, note: String?) {
         self.init()
         self.value = value
         self.category = category
+        self.date = date
+        self.note = note
     }
     
 }
