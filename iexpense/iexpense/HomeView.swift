@@ -9,14 +9,25 @@ import SwiftUI
 import RealmSwift
 import Combine
 
-struct HomeView: View {
-    @State var expenseValue: String = ""
-    @State var categorySelected: ExpenseCategory = .other
-    @State var date: Date = .init()
-    @State var note: String? = ""
-    @ObservedObject var padViewModel: NumberPadViewModel = NumberPadViewModel()
+class HomeViewModel: ObservableObject {
     @ObservedResults(ExpenseModel.self) var items
-    @State var date1 = Date()
+    
+    @Published var expenseValue: String = ""
+    @Published var note: String? = ""
+    @Published var categorySelected: ExpenseCategory = .other
+    @Published var date: Date = .init()
+    
+    func addExpense(_ item: ExpenseModel?) {
+        guard let item = item else {
+            return
+        }
+        $items.append(item)
+    }
+}
+
+struct HomeView: View {
+    @ObservedObject var viewModel: HomeViewModel = HomeViewModel()
+    @ObservedObject var padViewModel: NumberPadViewModel = NumberPadViewModel()
     
     var body: some View {
         VStack {
@@ -26,9 +37,9 @@ struct HomeView: View {
                 LazyHStack(spacing: 30) {
                     ForEach(ExpenseCategory.allCases, id: \.self) { category in
                         
-                        CategoryView(title: category.icon + category.title, selected: .constant(categorySelected == category))
+                        CategoryView(title: category.icon + category.title, selected: .constant(viewModel.categorySelected == category))
                             .onTapGesture {
-                                categorySelected = category
+                                viewModel.categorySelected = category
                             }
                     }
                 }
@@ -37,12 +48,12 @@ struct HomeView: View {
             .padding(.horizontal)
             
             HStack {
-                DatePickerButtonView(date: $date)
+                DatePickerButtonView(date: $viewModel.date)
                     .frame(width: 60, height: 60)
                 
                 Button {
-                    let item = ExpenseModel(value: Double(expenseValue) ?? 0.0, category: categorySelected, date: date, note: note)
-                    $items.append(item)
+                    let item = ExpenseModel(value: Double(viewModel.expenseValue) ?? 0.0, category: viewModel.categorySelected, date: viewModel.date, note: viewModel.note)
+                    viewModel.addExpense(item)
                     padViewModel.value = ""
 
                 } label: {
@@ -61,7 +72,7 @@ struct HomeView: View {
         }
         .onReceive(padViewModel.$value, perform: { value in
             guard !value.isEmpty else { return }
-            expenseValue = value
+            viewModel.expenseValue = value
         })
     }
 }
