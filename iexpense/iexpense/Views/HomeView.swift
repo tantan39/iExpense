@@ -28,7 +28,9 @@ struct HomeView: View {
                 }
                 .frame(height: 100)
             }
-            .padding(.horizontal)
+            .padding()
+            
+            Spacer()
             
             HStack {
                 DatePickerButtonView(date: $viewModel.date)
@@ -49,8 +51,8 @@ struct HomeView: View {
                 .disabled(padViewModel.value.isEmpty)
                 Spacer()
             }
-            .padding()
-            Spacer()
+            .padding(EdgeInsets(top: 0, leading: 8, bottom: 30, trailing: 8))
+
         }
         .onReceive(padViewModel.$value, perform: { value in
             guard !value.isEmpty else { return }
