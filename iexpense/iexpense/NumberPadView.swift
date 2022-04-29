@@ -9,7 +9,7 @@ import SwiftUI
 
 struct NumberPadView: View {
     
-    var colums = [GridItem(.adaptive(minimum: 100, maximum: 100), spacing: 10, alignment: .center)]
+    var colums = [GridItem(.adaptive(minimum: 100, maximum: 100), spacing: 20, alignment: .center)]
     
     @ObservedObject var viewModel = NumberPadViewModel()
     
@@ -28,8 +28,9 @@ struct NumberPadView: View {
                     if item.wrappedValue.type == .erase {
                         Text("\(item.wrappedValue.title)")
                             .font(.largeTitle)
+                            .fontWeight(.bold)
                             .frame(width: 100, height: 100)
-                            .background(Color.teal)
+                        
                             .foregroundColor(viewModel.value.isEmpty ? .gray : .black)
                             .disabled(viewModel.value.isEmpty)
                             .onTapGesture {
@@ -38,8 +39,8 @@ struct NumberPadView: View {
                     } else {
                         Text("\(item.wrappedValue.title)")
                             .font(.largeTitle)
+                            .fontWeight(.semibold)
                             .frame(width: 100, height: 100)
-                            .background(Color.teal)
                             .onTapGesture {
                                 self.viewModel.updateValue(item.wrappedValue)
                             }
