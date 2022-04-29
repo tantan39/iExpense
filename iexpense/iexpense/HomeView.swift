@@ -17,10 +17,9 @@ class HomeViewModel: ObservableObject {
     @Published var categorySelected: ExpenseCategory = .other
     @Published var date: Date = .init()
     
-    func addExpense(_ item: ExpenseModel?) {
-        guard let item = item else {
-            return
-        }
+    func addExpense() {
+        let item = ExpenseModel(value: Double(expenseValue) ?? 0.0, category: categorySelected, date: date, note: note)
+        
         $items.append(item)
     }
 }
@@ -52,8 +51,7 @@ struct HomeView: View {
                     .frame(width: 60, height: 60)
                 
                 Button {
-                    let item = ExpenseModel(value: Double(viewModel.expenseValue) ?? 0.0, category: viewModel.categorySelected, date: viewModel.date, note: viewModel.note)
-                    viewModel.addExpense(item)
+                    viewModel.addExpense()
                     padViewModel.value = ""
 
                 } label: {
