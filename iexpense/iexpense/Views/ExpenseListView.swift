@@ -9,18 +9,23 @@ import SwiftUI
 import RealmSwift
 
 struct ExpenseListView: View {
-    @State var expenseValue: String = ""
-    @State var category: ExpenseCategory = .other
     @ObservedResults(ExpenseModel.self) var items
     
     var body: some View {
         VStack {
             List {
                 ForEach (items, id: \.id) { item in
-                    HStack {
-                        Text(item.category.icon)
-                        let value = String(format: "$%.2f", item.value)
-                        Text(value)
+                    VStack {
+                        HStack {
+                            Text(item.category.icon)
+                            let value = String(format: "$%.2f", item.value)
+                            Text(value)
+                        }
+                        
+                        if let note = item.note {
+                            Text(note)
+                                .padding(.leading, 40)
+                        }
                     }
                 }
             }

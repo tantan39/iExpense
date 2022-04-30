@@ -58,6 +58,10 @@ struct HomeView: View {
             guard !value.isEmpty else { return }
             viewModel.expenseValue = value
         })
+        .onReceive(padViewModel.$note) { note in
+            guard !note.isEmpty else { return }
+            viewModel.note = note
+        }
     }
 }
 
