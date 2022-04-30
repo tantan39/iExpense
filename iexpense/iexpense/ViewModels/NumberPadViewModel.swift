@@ -24,6 +24,7 @@ class NumberPadViewModel: ObservableObject {
     ]
     
     @Published var value: String = ""
+    @Published var note: String = ""
     @Published var hasCentValues: Bool = false
     @Published var centNumberCount: Int = 0
     private let inputMaxCount = 9

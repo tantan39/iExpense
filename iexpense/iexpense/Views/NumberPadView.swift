@@ -21,12 +21,11 @@ struct NumberPadView: View {
             }
             .padding(.top, 30)
             
-            Text("Note")
+            TextField(viewModel.note.isEmpty ? "Note" : viewModel.note, text: $viewModel.note)
                 .font(.headline)
-                .fontWeight(.medium)
-                .foregroundColor(.secondary)
-                .offset(x: 0, y: 8)
-                
+                .multilineTextAlignment(.center)
+                .padding(.horizontal)
+            
             LazyVGrid(columns: colums) {
                 ForEach($viewModel.items, id: \.self) { item in
                     if item.wrappedValue.type == .erase {
@@ -54,7 +53,6 @@ struct NumberPadView: View {
             .padding(.top, 20)
             
         }
-        
     }
 
 }
