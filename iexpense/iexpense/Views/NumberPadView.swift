@@ -20,6 +20,12 @@ struct NumberPadView: View {
                     .padding(.leading, -4)
             }
             .padding(.top, 30)
+            
+            Text("Note")
+                .font(.headline)
+                .fontWeight(.medium)
+                .foregroundColor(.secondary)
+                .offset(x: 0, y: 8)
                 
             LazyVGrid(columns: colums) {
                 ForEach($viewModel.items, id: \.self) { item in
@@ -45,6 +51,7 @@ struct NumberPadView: View {
                     }
                 }
             }
+            .padding(.top, 20)
             
         }
         
