@@ -55,6 +55,7 @@ struct HomeView: View {
                     Button {
                         viewModel.addExpense()
                         padViewModel.value = ""
+                        padViewModel.note = ""
                         
                     } label: {
                         Text(viewModel.strDate)
