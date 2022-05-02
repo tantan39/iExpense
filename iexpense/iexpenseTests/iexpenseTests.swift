@@ -13,7 +13,7 @@ class iexpenseTests: XCTestCase {
         let sut = NumberPadViewModel()
 
         XCTAssertEqual(sut.value, "")
-        XCTAssertEqual(sut.enableCent, false)
+        XCTAssertEqual(sut.hasCentValues, false)
         XCTAssertEqual(sut.centNumberCount, 0)
     }
 
