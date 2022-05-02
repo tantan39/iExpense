@@ -21,7 +21,7 @@ struct HomeView: View {
                     LazyHStack(spacing: 30) {
                         ForEach(ExpenseCategory.allCases, id: \.self) { category in
                             
-                            CategoryView(title: category.icon + category.title, selected: .constant(viewModel.categorySelected == category))
+                            CategoryView(title: category.icon + " " +  category.title, selected: .constant(viewModel.categorySelected == category))
                                 .onTapGesture {
                                     viewModel.categorySelected = category
                                 }

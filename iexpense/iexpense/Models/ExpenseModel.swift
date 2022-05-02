@@ -27,34 +27,64 @@ class ExpenseModel: Object, ObjectKeyIdentifiable {
 
 enum ExpenseCategory: Int, PersistableEnum, CaseIterable {
     
-    case other
-    case food
-    case house
+    case debtLoan
+    case bills
+    case grocery
+    case shopping
+    case family
     case children
+    case gifts
+    case transportation
+    case travel
+    case other
     
     var title: String {
         switch self {
-        case .other:
-            return "Other"
-        case .food:
-            return "Food"
-        case .house:
-            return "House"
+        case .debtLoan:
+            return "Dept/Loan"
+        case .bills:
+            return "Bills & Utilities"
+        case .grocery:
+            return "Grocery"
+        case .shopping:
+            return "Shopping"
+        case .family:
+            return "Family"
         case .children:
             return "Children"
+        case .gifts:
+            return "Gifts"
+        case .transportation:
+            return "Transportation"
+        case .travel:
+            return "Travel"
+        case .other:
+            return "Other"
         }
     }
     
     var icon: String {
         switch self {
-        case .other:
-            return "💰"
-        case .food:
-            return "🍔"
-        case .house:
+        case .debtLoan:
+            return "🏦"
+        case .bills:
+            return "🧾"
+        case .grocery:
+            return "🛒"
+        case .shopping:
+            return "🛍"
+        case .family:
             return "🏡"
         case .children:
             return "👶🏻"
+        case .gifts:
+            return "🎁"
+        case .transportation:
+            return "🚘"
+        case .travel:
+            return "🛫"
+        case .other:
+            return "💰"
         }
     }
 }
