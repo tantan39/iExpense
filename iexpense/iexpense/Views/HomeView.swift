@@ -43,7 +43,7 @@ struct HomeView: View {
                         padViewModel.value = ""
                         
                     } label: {
-                        Text("Add for Today")
+                        Text(viewModel.strDate)
                             .fontWeight(.bold)
                             .font(.title3)
                             .frame(width: 260, height: 30)

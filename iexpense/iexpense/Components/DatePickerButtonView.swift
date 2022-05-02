@@ -12,7 +12,7 @@ struct DatePickerButtonView: View {
     
     var body: some View {
         ZStack {
-            DatePicker("label", selection: $date, displayedComponents: [.date])
+            DatePicker("label", selection: $date, in: ...Date(), displayedComponents: [.date])
                 .datePickerStyle(CompactDatePickerStyle())
                 .labelsHidden()
             Image(systemName: "calendar")
