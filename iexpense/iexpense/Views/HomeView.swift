@@ -35,9 +35,9 @@ struct HomeView: View {
                     LazyHStack(spacing: 30) {
                         ForEach(PaymentMethod.allCases, id: \.self) { method in
                             
-                            CategoryView(title: method.icon + " " +  method.title, selectedColor: .accentColor, selected: .constant(viewModel.paymentMethodSelected == method))
+                            CategoryView(title: method.icon + " " +  method.title, selectedColor: .accentColor, selected: .constant(viewModel.paymentMethod == method))
                                 .onTapGesture {
-                                    viewModel.paymentMethodSelected = method
+                                    viewModel.paymentMethod = method
                                 }
                         }
                     }

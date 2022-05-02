@@ -14,7 +14,7 @@ class HomeViewViewModel: ObservableObject {
     @Published var expenseValue: String = ""
     @Published var note: String? = ""
     @Published var categorySelected: ExpenseCategory = .debtLoan
-    @Published var paymentMethodSelected: PaymentMethod = .creditCard
+    @Published var paymentMethod: PaymentMethod = .creditCard
     @Published var date: Date = .init()
     
     var strDate: String {
@@ -25,7 +25,11 @@ class HomeViewViewModel: ObservableObject {
     }
     
     func addExpense() {
-        let item = ExpenseModel(value: Double(expenseValue) ?? 0.0, category: categorySelected, date: date, note: note)
+        let item = ExpenseModel(value: Double(expenseValue) ?? 0.0,
+                                category: categorySelected,
+                                paymentMethod: paymentMethod,
+                                date: date,
+                                note: note)
         
         $items.append(item)
     }
