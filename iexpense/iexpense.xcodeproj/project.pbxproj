@@ -23,6 +23,7 @@
 		B47E159728197626001A374B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B47E159628197626001A374B /* Preview Assets.xcassets */; };
 		B47E159F28197A70001A374B /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = B47E159E28197A70001A374B /* Realm */; };
 		B47E15A128197A70001A374B /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = B47E15A028197A70001A374B /* RealmSwift */; };
+		B483ABF0282028D400F2A0CA /* Introspect in Frameworks */ = {isa = PBXBuildFile; productRef = B483ABEF282028D400F2A0CA /* Introspect */; };
 		B49C94062819B92600D77C46 /* NumberPadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B49C94052819B92600D77C46 /* NumberPadView.swift */; };
 		B49C940E2819C9E200D77C46 /* iexpenseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B49C940D2819C9E200D77C46 /* iexpenseTests.swift */; };
 /* End PBXBuildFile section */
@@ -64,6 +65,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B47E15A128197A70001A374B /* RealmSwift in Frameworks */,
+				B483ABF0282028D400F2A0CA /* Introspect in Frameworks */,
 				B47E159F28197A70001A374B /* Realm in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -185,6 +187,7 @@
 			packageProductDependencies = (
 				B47E159E28197A70001A374B /* Realm */,
 				B47E15A028197A70001A374B /* RealmSwift */,
+				B483ABEF282028D400F2A0CA /* Introspect */,
 			);
 			productName = iexpense;
 			productReference = B47E158C28197625001A374B /* iexpense.app */;
@@ -238,6 +241,7 @@
 			mainGroup = B47E158328197625001A374B;
 			packageReferences = (
 				B47E159D28197A70001A374B /* XCRemoteSwiftPackageReference "realm-swift" */,
+				B483ABEE282028D300F2A0CA /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */,
 			);
 			productRefGroup = B47E158D28197625001A374B /* Products */;
 			projectDirPath = "";
@@ -559,6 +563,14 @@
 				kind = branch;
 			};
 		};
+		B483ABEE282028D300F2A0CA /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/siteline/SwiftUI-Introspect.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -571,6 +583,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = B47E159D28197A70001A374B /* XCRemoteSwiftPackageReference "realm-swift" */;
 			productName = RealmSwift;
+		};
+		B483ABEF282028D400F2A0CA /* Introspect */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B483ABEE282028D300F2A0CA /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */;
+			productName = Introspect;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
