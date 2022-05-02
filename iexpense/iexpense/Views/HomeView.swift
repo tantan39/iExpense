@@ -13,46 +13,48 @@ struct HomeView: View {
     @ObservedObject var padViewModel: NumberPadViewModel = NumberPadViewModel()
     
     var body: some View {
-        VStack {
-            NumberPadView(viewModel: padViewModel)
-                .padding(.bottom, 10)
-            ScrollView(.horizontal, showsIndicators: false) {
-                LazyHStack(spacing: 30) {
-                    ForEach(ExpenseCategory.allCases, id: \.self) { category in
-                        
-                        CategoryView(title: category.icon + category.title, selected: .constant(viewModel.categorySelected == category))
-                            .onTapGesture {
-                                viewModel.categorySelected = category
-                            }
+        GeometryReader { _ in
+            VStack {
+                NumberPadView(viewModel: padViewModel)
+                    .padding(.bottom, 10)
+                ScrollView(.horizontal, showsIndicators: false) {
+                    LazyHStack(spacing: 30) {
+                        ForEach(ExpenseCategory.allCases, id: \.self) { category in
+                            
+                            CategoryView(title: category.icon + category.title, selected: .constant(viewModel.categorySelected == category))
+                                .onTapGesture {
+                                    viewModel.categorySelected = category
+                                }
+                        }
                     }
+                    .frame(height: 100)
                 }
-                .frame(height: 100)
-            }
-            .padding()
-            
-            Spacer()
-            
-            HStack {
-                DatePickerButtonView(date: $viewModel.date)
-                    .frame(width: 60, height: 60)
+                .padding()
                 
-                Button {
-                    viewModel.addExpense()
-                    padViewModel.value = ""
-
-                } label: {
-                    Text("Add for Today")
-                        .fontWeight(.bold)
-                        .font(.title3)
-                        .frame(width: 300, height: 30)
-                        .padding()
-                }
-                .buttonStyle(MainButtonStyle())
-                .disabled(padViewModel.value.isEmpty)
                 Spacer()
+                    
+                HStack {
+                    
+                    DatePickerButtonView(date: $viewModel.date)
+                        .frame(width: 60, height: 60)
+                    
+                    Button {
+                        viewModel.addExpense()
+                        padViewModel.value = ""
+                        
+                    } label: {
+                        Text("Add for Today")
+                            .fontWeight(.bold)
+                            .font(.title3)
+                            .frame(width: 260, height: 30)
+                            .padding()
+                    }
+                    .buttonStyle(MainButtonStyle())
+                    .disabled(padViewModel.value.isEmpty)
+                    
+                }
+                
             }
-            .padding(EdgeInsets(top: 0, leading: 8, bottom: 30, trailing: 8))
-
         }
         .onReceive(padViewModel.$value, perform: { value in
             guard !value.isEmpty else { return }
@@ -62,6 +64,7 @@ struct HomeView: View {
             guard !note.isEmpty else { return }
             viewModel.note = note
         }
+        .ignoresSafeArea(.keyboard, edges: .bottom)
     }
 }
 
