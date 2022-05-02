@@ -27,9 +27,23 @@ struct HomeView: View {
                                 }
                         }
                     }
-                    .frame(height: 100)
+                    .frame(height: 60)
                 }
-                .padding()
+                .padding(.horizontal)
+                
+                ScrollView(.horizontal, showsIndicators: false) {
+                    LazyHStack(spacing: 30) {
+                        ForEach(PaymentMethod.allCases, id: \.self) { method in
+                            
+                            CategoryView(title: method.icon + " " +  method.title, selectedColor: .accentColor, selected: .constant(viewModel.paymentMethodSelected == method))
+                                .onTapGesture {
+                                    viewModel.paymentMethodSelected = method
+                                }
+                        }
+                    }
+                    .frame(height: 60)
+                }
+                .padding(.horizontal)
                 
                 Spacer()
                     

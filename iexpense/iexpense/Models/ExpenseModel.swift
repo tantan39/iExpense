@@ -88,3 +88,32 @@ enum ExpenseCategory: Int, PersistableEnum, CaseIterable {
         }
     }
 }
+
+enum PaymentMethod: Int, PersistableEnum, CaseIterable {
+    
+    case creditCard
+    case cash
+    case digitalWallet
+    
+    var title: String {
+        switch self {
+        case .cash:
+            return "Cash"
+        case .creditCard:
+            return "Credit Card"
+        case .digitalWallet:
+            return "Digital Wallet"
+        }
+    }
+    
+    var icon: String {
+        switch self {
+        case .cash:
+            return "💵"
+        case .creditCard:
+            return "💳"
+        case .digitalWallet:
+            return "📱"
+        }
+    }
+}

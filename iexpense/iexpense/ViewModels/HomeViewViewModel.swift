@@ -14,6 +14,7 @@ class HomeViewViewModel: ObservableObject {
     @Published var expenseValue: String = ""
     @Published var note: String? = ""
     @Published var categorySelected: ExpenseCategory = .debtLoan
+    @Published var paymentMethodSelected: PaymentMethod = .creditCard
     @Published var date: Date = .init()
     
     var strDate: String {

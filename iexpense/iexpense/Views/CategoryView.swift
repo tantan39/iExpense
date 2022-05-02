@@ -9,6 +9,8 @@ import SwiftUI
 
 struct CategoryView: View {
     var title: String
+    var selectedColor: Color = .yellow
+    
     @Binding var selected: Bool
     
     var body: some View {
@@ -19,7 +21,7 @@ struct CategoryView: View {
         }
         .padding()
         .background(
-            RoundedRectangle(cornerRadius: 10, style: .circular)
-                .foregroundColor(selected ? .yellow : .gray.opacity(0.5)))
+            RoundedRectangle(cornerRadius: 30, style: .continuous)
+                .foregroundColor(selected ? selectedColor : .gray.opacity(0.5)))
     }
 }
