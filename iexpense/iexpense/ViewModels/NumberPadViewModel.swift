@@ -29,6 +29,11 @@ class NumberPadViewModel: ObservableObject {
     @Published var centNumberCount: Int = 0
     private let inputMaxCount = 9
     
+    var isValidated: Bool {
+        guard let doubleValue = Double(value) else { return false }
+        return doubleValue > 0.0
+    }
+    
     func updateValue(_ item: NumberPadItem) {
         switch item.type {
         case .number:

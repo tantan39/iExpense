@@ -65,7 +65,7 @@ struct HomeView: View {
                             .padding()
                     }
                     .buttonStyle(MainButtonStyle())
-                    .disabled(padViewModel.value.isEmpty)
+                    .disabled(!padViewModel.isValidated)
                     
                 }
                 

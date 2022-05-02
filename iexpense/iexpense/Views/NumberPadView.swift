@@ -32,7 +32,7 @@ struct NumberPadView: View {
                         Text("\(item.wrappedValue.title)")
                             .font(.largeTitle)
                             .fontWeight(.bold)
-                            .frame(width: 100, height: 100)
+                            .frame(width: 90, height: 90)
                         
                             .foregroundColor(viewModel.value.isEmpty ? .gray : .black)
                             .disabled(viewModel.value.isEmpty)
@@ -43,7 +43,7 @@ struct NumberPadView: View {
                         Text("\(item.wrappedValue.title)")
                             .font(.largeTitle)
                             .fontWeight(.semibold)
-                            .frame(width: 100, height: 100)
+                            .frame(width: 90, height: 90)
                             .onTapGesture {
                                 self.viewModel.updateValue(item.wrappedValue)
                             }
