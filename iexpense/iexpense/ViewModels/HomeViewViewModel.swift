@@ -21,7 +21,14 @@ class HomeViewViewModel: ObservableObject {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MMM-dd-YYYY"
         
-        return Calendar.current.isDateInToday(date) ? "Add for Today" : "Add for \(dateFormatter.string(from: date))"
+        let calendar = Calendar.current
+        if calendar.isDateInToday(date) {
+            return "Add for Today"
+        } else if calendar.isDateInYesterday(date) {
+           return "Add for Yesterday"
+        }
+        
+        return "Add for \(dateFormatter.string(from: date))"
     }
     
     func addExpense() {
@@ -30,7 +37,6 @@ class HomeViewViewModel: ObservableObject {
                                 paymentMethod: paymentMethod,
                                 date: date,
                                 note: note)
-        
-        $items.append(item)
+         $items.append(item)
     }
 }
