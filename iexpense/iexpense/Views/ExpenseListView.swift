@@ -8,25 +8,33 @@
 import SwiftUI
 import RealmSwift
 
-struct ExpenseListView: View {
+struct ExpenseCellView: View {
+    @Binding var item: ExpenseModel
+    
+    var body: some View {
+        VStack {
+            HStack {
+                Text(item.category.icon)
+                let value = String(format: "$%.2f", item.value)
+                Text(value)
+            }
+            
+            if let note = item.note {
+                Text(note)
+                    .padding(.leading, 40)
+            }
+        }
+    }
+}
+
+class ExpenseListViewModel: ObservableObject {
     @ObservedResults(ExpenseModel.self) var items
     
     var body: some View {
         VStack {
             List {
-                ForEach (items, id: \.id) { item in
-                    VStack {
-                        HStack {
-                            Text(item.category.icon)
-                            let value = String(format: "$%.2f", item.value)
-                            Text(value)
-                        }
-                        
-                        if let note = item.note {
-                            Text(note)
-                                .padding(.leading, 40)
-                        }
-                    }
+                ForEach (viewModel.items, id: \.id) { item in
+                    ExpenseCellView(item: .constant(item))
                 }
             }
         }
