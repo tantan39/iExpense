@@ -29,6 +29,10 @@ struct ExpenseCellView: View {
 
 class ExpenseListViewModel: ObservableObject {
     @ObservedResults(ExpenseModel.self) var items
+}
+
+struct ExpenseListView: View {
+    @ObservedObject var viewModel: ExpenseListViewModel = ExpenseListViewModel()
     
     var body: some View {
         VStack {
@@ -46,3 +50,12 @@ struct ExpenseListView_Previews: PreviewProvider {
         ExpenseListView()
     }
 }
+
+#if DEBUG
+let items: [ExpenseModel] = [
+    ExpenseModel(value: 200, category: .debtLoan, paymentMethod: .creditCard, date: .init(), note: "a Note"),
+    ExpenseModel(value: 28.50, category: .children, paymentMethod: .creditCard, date: .init(), note: "another Note"),
+    ExpenseModel(value: 1500, category: .family, paymentMethod: .cash, date: .init(), note: nil),
+    ExpenseModel(value: 11.58, category: .grocery, paymentMethod: .digitalWallet, date: .init(), note: "a Note"),
+]
+#endif
