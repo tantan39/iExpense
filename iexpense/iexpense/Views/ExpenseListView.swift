@@ -55,6 +55,20 @@ class ExpenseListViewModel: ObservableObject {
     init() {
         expenseModels.objectWillChange.sink { _ in
             self.items = self.expenseModels.map { $0 }
+            for item in self.expenseModels {
+                if self.groupItems.contains(where: { (key, _) in
+                    return Calendar.current.isDate(key, inSameDayAs: item.date)
+                }) {
+                    _ = self.groupItems.map { (key, _) in
+                        if Calendar.current.isDate(key, inSameDayAs: item.date) {
+                            self.groupItems[key]?.append(item)
+                        }
+                    }
+                } else {
+                    self.groupItems[item.date] = [item]
+                }
+            }
+            
         }
         .store(in: &cancellabels)
     }
