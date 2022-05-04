@@ -22,6 +22,7 @@ struct ExpenseCellView: View {
     
     var body: some View {
         VStack {
+            Text(item.date.display)
             HStack {
                 Text(item.category.icon)
                     .font(.largeTitle)
