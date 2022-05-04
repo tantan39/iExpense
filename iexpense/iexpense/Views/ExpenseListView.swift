@@ -15,13 +15,21 @@ struct ExpenseCellView: View {
         VStack {
             HStack {
                 Text(item.category.icon)
+                    .font(.largeTitle)
+                VStack(alignment: .leading) {
+                    Text(item.category.title)
+                        .font(.headline)
+                    
+                    if let note = item.note {
+                        Text(note)
+                            .fontWeight(.light)
+                            .foregroundColor(.secondary)
+                    }
+                }
+                Spacer()
                 let value = String(format: "$%.2f", item.value)
                 Text(value)
-            }
-            
-            if let note = item.note {
-                Text(note)
-                    .padding(.leading, 40)
+                    .font(.headline)
             }
         }
     }
