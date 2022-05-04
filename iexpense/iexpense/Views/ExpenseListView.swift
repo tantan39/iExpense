@@ -46,7 +46,18 @@ struct ExpenseCellView: View {
 }
 
 class ExpenseListViewModel: ObservableObject {
-    @ObservedResults(ExpenseModel.self) var items
+    @ObservedResults(ExpenseModel.self, sortDescriptor: SortDescriptor.init(keyPath: "date", ascending: false)) private var expenseModels
+    @Published var items: [ExpenseModel] = []
+    @Published var groupItems: [Date: [ExpenseModel]] = [:]
+    
+    private var cancellabels = Set<AnyCancellable>()
+    
+    init() {
+        expenseModels.objectWillChange.sink { _ in
+            self.items = self.expenseModels.map { $0 }
+        }
+        .store(in: &cancellabels)
+    }
 }
 
 struct ExpenseListView: View {
@@ -55,8 +66,10 @@ struct ExpenseListView: View {
     var body: some View {
         VStack {
             List {
-                ForEach (viewModel.items, id: \.id) { item in
-                    ExpenseCellView(item: .constant(item))
+                ForEach ($viewModel.items, id: \.id) { item in
+                    Section {
+                        ExpenseCellView(item: item)
+                    }
                 }
             }
         }
