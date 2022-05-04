@@ -7,6 +7,15 @@
 
 import SwiftUI
 import RealmSwift
+import Combine
+
+extension Date {
+    var display: String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MM dd yyyy"
+        return dateFormatter.string(from: self)
+    }
+}
 
 struct ExpenseCellView: View {
     @Binding var item: ExpenseModel

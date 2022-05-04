@@ -142,6 +142,7 @@
 			isa = PBXGroup;
 			children = (
 				B47E158F28197625001A374B /* iexpenseApp.swift */,
+				B4ED93162822E635006AB047 /* Extensions */,
 				B4026121281C7B650097D7D4 /* Components */,
 				B4026110281ADC660097D7D4 /* Models */,
 				B4026125281CAACA0097D7D4 /* ViewModels */,
@@ -166,6 +167,13 @@
 				B49C940D2819C9E200D77C46 /* iexpenseTests.swift */,
 			);
 			path = iexpenseTests;
+			sourceTree = "<group>";
+		};
+		B4ED93162822E635006AB047 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
