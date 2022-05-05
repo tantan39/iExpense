@@ -11,7 +11,7 @@ struct ContentView: View {
 
     var body: some View {
         PageView()
-            .edgesIgnoringSafeArea(.all)
+            .edgesIgnoringSafeArea([.leading, .trailing, .bottom])
     }
 }
 
