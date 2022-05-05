@@ -37,4 +37,12 @@ class ExpenseListViewModel: ObservableObject {
         }
         .store(in: &cancellabels)
     }
+    
+    func totalExpense(by group: GroupExpense) -> String {
+        let total = group.items.reduce(0) { partialResult, item in
+            partialResult + item.value
+        }
+        
+        return String(format: "$%.2f", total)
+    }
 }

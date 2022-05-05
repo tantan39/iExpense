@@ -21,13 +21,15 @@ struct ExpenseCellView: View {
                     Text(item.category.title)
                         .font(.headline)
                     
-                    if let note = item.note {
+                    if let note = item.note, !note.isEmpty {
                         Text(note)
                             .fontWeight(.light)
                             .foregroundColor(.secondary)
                     }
                 }
+                
                 Spacer()
+                
                 let value = String(format: "$%.2f", item.value)
                 Text(value)
                     .font(.headline)
