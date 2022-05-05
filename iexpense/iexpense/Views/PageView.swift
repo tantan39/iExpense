@@ -47,9 +47,14 @@ struct MenuItemViewPreview_Provider: PreviewProvider {
     }
 }
 
+enum TabItem: Int {
+    case transaction
+    case history
+}
+
 
 struct PageView: View {
-    @State private var tabSelection = 1
+    @State private var tabSelection: TabItem = .transaction
     
     var body: some View {
         let _ = print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!.path)
@@ -64,14 +69,14 @@ struct PageView: View {
 //                }
                 
                 Button {
-                    tabSelection = 1
+                    tabSelection = .transaction
                 } label: {
                     HStack {
                         Image(systemName: "note.text.badge.plus")
                             .resizable()
                             .frame(width: 30, height: 30)
                             .padding()
-                        if tabSelection == 1 {
+                        if tabSelection == .transaction {
                             Text("Transaction")
                                 .offset(x: -12, y: 0)
                         }
@@ -82,14 +87,14 @@ struct PageView: View {
                 .animation(.default, value: tabSelection)
 
                 Button {
-                    tabSelection = 2
+                    tabSelection = .history
                 } label: {
                     HStack {
                         Image(systemName: "list.bullet.rectangle.portrait")
                             .resizable()
                             .frame(width: 30, height: 30)
                             .padding()
-                        if tabSelection == 2 {
+                        if tabSelection == .history {
                             Text("History")
                                 .offset(x: -12, y: 0)
                         }
@@ -107,9 +112,9 @@ struct PageView: View {
 
             TabView(selection: $tabSelection) {
                 HomeView()
-                    .tag(1)
+                    .tag(TabItem.transaction)
                 ExpenseListView()
-                    .tag(2)
+                    .tag(TabItem.history)
             }
             .introspectTabBarController(customize: { tabBarController in
                 tabBarController.tabBar.isHidden = true
@@ -120,9 +125,9 @@ struct PageView: View {
                 
                 if abs(horizontalAmount) > abs(verticalAmount) {
                     if horizontalAmount < 0 {
-                        tabSelection = 2
+                        tabSelection = .history
                     } else {
-                        tabSelection = 1
+                        tabSelection = .transaction
                     }
                 } else {
                     print(verticalAmount < 0 ? "up swipe" : "down swipe")
