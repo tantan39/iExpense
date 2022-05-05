@@ -17,6 +17,13 @@ extension Date {
     }
 }
 
+struct GroupExpense: Identifiable {
+    var id: UUID = UUID.init()
+    
+    let date: Date
+    var items: [ExpenseModel]
+}
+
 struct ExpenseCellView: View {
     @Binding var item: ExpenseModel
     
@@ -47,25 +54,18 @@ struct ExpenseCellView: View {
 
 class ExpenseListViewModel: ObservableObject {
     @ObservedResults(ExpenseModel.self, sortDescriptor: SortDescriptor.init(keyPath: "date", ascending: false)) private var expenseModels
-    @Published var items: [ExpenseModel] = []
-    @Published var groupItems: [Date: [ExpenseModel]] = [:]
+    @Published var groupItems: [GroupExpense] = []
     
     private var cancellabels = Set<AnyCancellable>()
     
     init() {
         expenseModels.objectWillChange.sink { _ in
-            self.items = self.expenseModels.map { $0 }
             for item in self.expenseModels {
-                if self.groupItems.contains(where: { (key, _) in
-                    return Calendar.current.isDate(key, inSameDayAs: item.date)
-                }) {
-                    _ = self.groupItems.map { (key, _) in
-                        if Calendar.current.isDate(key, inSameDayAs: item.date) {
-                            self.groupItems[key]?.append(item)
-                        }
-                    }
+                if let index = self.groupItems.firstIndex(where: { Calendar.current.isDate($0.date, inSameDayAs: item.date) }) {
+                    self.groupItems[index].items.append(item)
                 } else {
-                    self.groupItems[item.date] = [item]
+                    let newGroup = GroupExpense(date: item.date, items: [item])
+                    self.groupItems.append(newGroup)
                 }
             }
             
@@ -80,9 +80,11 @@ struct ExpenseListView: View {
     var body: some View {
         VStack {
             List {
-                ForEach ($viewModel.items, id: \.id) { item in
+                ForEach ($viewModel.groupItems, id: \.id) { group in
                     Section {
-                        ExpenseCellView(item: item)
+                        ForEach (group.items, id: \.id) { item in
+                            ExpenseCellView(item: item)
+                        }
                     }
                 }
             }
