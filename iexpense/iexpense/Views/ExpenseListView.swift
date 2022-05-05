@@ -9,14 +9,6 @@ import SwiftUI
 import RealmSwift
 import Combine
 
-extension Date {
-    var display: String {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MM dd yyyy"
-        return dateFormatter.string(from: self)
-    }
-}
-
 struct ExpenseCellView: View {
     @Binding var item: ExpenseModel
     
@@ -56,7 +48,13 @@ struct ExpenseListView: View {
                             ExpenseCellView(item: item)
                         }
                     } header: {
-                        Text(group.wrappedValue.date.display)
+                        HStack {
+                            Text(group.wrappedValue.date.display)
+                                .font(.headline)
+                            Spacer()
+                            Text(viewModel.totalExpense(by: group.wrappedValue))
+                                .font(.headline)
+                        }
                     }
                 }
             }
