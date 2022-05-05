@@ -25,7 +25,7 @@ class HomeViewViewModel: ObservableObject {
         if calendar.isDateInToday(date) {
             return "Add for Today"
         } else if calendar.isDateInYesterday(date) {
-           return "Add for Yesterday"
+            return "Add for Yesterday"
         }
         
         return "Add for \(dateFormatter.string(from: date))"
@@ -37,6 +37,24 @@ class HomeViewViewModel: ObservableObject {
                                 paymentMethod: paymentMethod,
                                 date: date,
                                 note: note)
-         $items.append(item)
+        $items.append(item)
+    }
+    
+    func update(_ item: ExpenseModel) {
+        if let _ = items.firstIndex(where: { $0.id == item.id }) {
+            do {
+                let realm = try Realm()
+                let expense = realm.object(ofType: ExpenseModel.self, forPrimaryKey: item.id)
+                try realm.write {
+                    expense?.value = item.value
+                    expense?.note = item.note
+                    expense?.category = item.category
+                    expense?.paymentMethod = item.paymentMethod
+                    expense?.date = item.date
+                }
+            } catch {
+                
+            }
+        }
     }
 }
