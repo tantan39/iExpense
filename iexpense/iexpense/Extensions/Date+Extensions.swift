@@ -11,6 +11,18 @@ extension Date {
     var display: String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MMM dd"
-        return dateFormatter.string(from: self)
+        
+        var day: String = ""
+        let calendar = Calendar.current
+        if calendar.isDateInToday(self) {
+            day = "Today"
+        } else if calendar.isDateInYesterday(self) {
+            day = "Yesterday"
+        } else {
+            dateFormatter.dateFormat = "MMM dd - EEEE"
+            return dateFormatter.string(from: self)
+        }
+        
+        return dateFormatter.string(from: self) + " - " + day
     }
 }
