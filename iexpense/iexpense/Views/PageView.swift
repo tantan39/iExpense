@@ -9,12 +9,28 @@ import Foundation
 import SwiftUI
 import Introspect
 
-
 enum TabItem: Int, CaseIterable {
     case transaction
     case history
+    
+    var title: String {
+        switch self {
+        case .transaction:
+            return "Transaction"
+        case .history:
+            return "History"
+        }
+    }
+    
+    var icon: String {
+        switch self {
+        case .transaction:
+            return "note.text.badge.plus"
+        case .history:
+            return "list.bullet.rectangle.portrait"
+        }
+    }
 }
-
 
 struct PageView: View {
     @State private var tabSelection: TabItem = .transaction
