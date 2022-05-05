@@ -9,45 +9,8 @@ import Foundation
 import SwiftUI
 import Introspect
 
-struct MenuItemView: View {
-    @State var title: String
-    @State var icon: String
-    @State var enable: Bool = false
-    var onClick: (() -> Void)?
-    
-    var body: some View {
-        Button {
-//            onClick?()
-            enable.toggle()
-        } label: {
-            HStack {
-                Image(systemName: icon)
-                    .resizable()
-                    .frame(width: 30, height: 30)
-                    .padding()
-                if enable {
-                    Text(title)
-//                        .animation(.default).transition(AnyTransition.opacity.animation(.interactiveSpring()))
-//                        .padding(.trailing, 10)
-                        .offset(x: -10, y: 0)
-                }
-            }
-            .background(RoundedRectangle(cornerRadius: 10)
-                            .foregroundColor(.gray))
-            .animation(.default, value: enable)
 
-        }
-
-    }
-}
-
-struct MenuItemViewPreview_Provider: PreviewProvider {
-    static var previews: some View {
-        MenuItemView(title: "Transaction", icon: "note.text.badge.plus", onClick: { })
-    }
-}
-
-enum TabItem: Int {
+enum TabItem: Int, CaseIterable {
     case transaction
     case history
 }
@@ -60,51 +23,11 @@ struct PageView: View {
         let _ = print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!.path)
         VStack {
             HStack {
-//                MenuItemView(title: "Transaction", icon: "note.text.badge.plus") {
-//                    tabSelection = 1
-//                }
-                
-//                MenuItemView(title: "Transaction", icon: "note.text.badge.plus") {
-//                    tabSelection = 1
-//                }
-                
-                Button {
-                    tabSelection = .transaction
-                } label: {
-                    HStack {
-                        Image(systemName: "note.text.badge.plus")
-                            .resizable()
-                            .frame(width: 30, height: 30)
-                            .padding()
-                        if tabSelection == .transaction {
-                            Text("Transaction")
-                                .offset(x: -12, y: 0)
-                        }
+                ForEach (TabItem.allCases, id: \.self) { tabItem in
+                    MenuItemView(title: tabItem.title, icon: tabItem.icon, selected: .constant(tabSelection == tabItem)) {
+                        tabSelection = tabItem
                     }
                 }
-                .background(RoundedRectangle(cornerRadius: 10)
-                                .foregroundColor(.gray))
-                .animation(.default, value: tabSelection)
-
-                Button {
-                    tabSelection = .history
-                } label: {
-                    HStack {
-                        Image(systemName: "list.bullet.rectangle.portrait")
-                            .resizable()
-                            .frame(width: 30, height: 30)
-                            .padding()
-                        if tabSelection == .history {
-                            Text("History")
-                                .offset(x: -12, y: 0)
-                        }
-                    }
-                }
-                .background(RoundedRectangle(cornerRadius: 10)
-                                .foregroundColor(.gray))
-                .padding(.leading, 20)
-                .animation(.default, value: tabSelection)
-
                 
                 Spacer()
 

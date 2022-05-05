@@ -17,6 +17,7 @@
 		B4026120281C7B3F0097D7D4 /* CategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B402611F281C7B3F0097D7D4 /* CategoryView.swift */; };
 		B4026123281C7B770097D7D4 /* MainButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4026122281C7B770097D7D4 /* MainButtonStyle.swift */; };
 		B4026127281CAAEE0097D7D4 /* HomeViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4026126281CAAEE0097D7D4 /* HomeViewViewModel.swift */; };
+		B46BF5402824213200100A19 /* MenuItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B46BF53F2824213200100A19 /* MenuItemView.swift */; };
 		B47E159028197625001A374B /* iexpenseApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B47E158F28197625001A374B /* iexpenseApp.swift */; };
 		B47E159228197625001A374B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B47E159128197625001A374B /* ContentView.swift */; };
 		B47E159428197626001A374B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B47E159328197626001A374B /* Assets.xcassets */; };
@@ -51,6 +52,7 @@
 		B402611F281C7B3F0097D7D4 /* CategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryView.swift; sourceTree = "<group>"; };
 		B4026122281C7B770097D7D4 /* MainButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainButtonStyle.swift; sourceTree = "<group>"; };
 		B4026126281CAAEE0097D7D4 /* HomeViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewViewModel.swift; sourceTree = "<group>"; };
+		B46BF53F2824213200100A19 /* MenuItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItemView.swift; sourceTree = "<group>"; };
 		B47E158C28197625001A374B /* iexpense.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iexpense.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B47E158F28197625001A374B /* iexpenseApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iexpenseApp.swift; sourceTree = "<group>"; };
 		B47E159128197625001A374B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -98,6 +100,7 @@
 			children = (
 				B4026122281C7B770097D7D4 /* MainButtonStyle.swift */,
 				B402611D281C34F30097D7D4 /* DatePickerButtonView.swift */,
+				B46BF53F2824213200100A19 /* MenuItemView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -303,6 +306,7 @@
 				B4026112281ADC830097D7D4 /* NumberPadItem.swift in Sources */,
 				B402611E281C34F30097D7D4 /* DatePickerButtonView.swift in Sources */,
 				B4026114281AECCD0097D7D4 /* NumberPadViewModel.swift in Sources */,
+				B46BF5402824213200100A19 /* MenuItemView.swift in Sources */,
 				B4026118281AEF090097D7D4 /* PageView.swift in Sources */,
 				B4026127281CAAEE0097D7D4 /* HomeViewViewModel.swift in Sources */,
 				B402611A281AF0830097D7D4 /* ExpenseListView.swift in Sources */,
