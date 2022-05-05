@@ -20,15 +20,17 @@ struct MenuItemView: View {
             HStack {
                 Image(systemName: icon)
                     .resizable()
+                    .foregroundColor(.white)
                     .frame(width: 30, height: 30)
                     .padding()
                 if selected {
                     Text(title)
+                        .foregroundColor(.white)
                         .offset(x: -10, y: 0)
                 }
             }
             .background(RoundedRectangle(cornerRadius: 10)
-                            .foregroundColor(.gray))
+                            .foregroundColor(selected ? .gray : .black))
             .animation(.default, value: selected)
 
         }
