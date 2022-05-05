@@ -21,7 +21,7 @@ struct NumberPadView: View {
             }
             .padding(.top, 30)
             
-            TextField(viewModel.note.isEmpty ? "Note" : viewModel.note, text: $viewModel.note)
+            TextField(viewModel.note.isEmpty ? "Add Note" : viewModel.note, text: $viewModel.note)
                 .font(.headline)
                 .multilineTextAlignment(.center)
                 .padding(.horizontal)
