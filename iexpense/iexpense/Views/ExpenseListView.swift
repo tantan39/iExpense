@@ -40,6 +40,7 @@ struct ExpenseCellView: View {
 
 struct ExpenseListView: View {
     @ObservedObject var viewModel: ExpenseListViewModel = ExpenseListViewModel()
+    @State var showEdit: Bool = false
     
     var body: some View {
         VStack {
@@ -48,6 +49,9 @@ struct ExpenseListView: View {
                     Section {
                         ForEach (group.items, id: \.id) { item in
                             ExpenseCellView(item: item)
+                                .onTapGesture {
+                                    showEdit.toggle()
+                                }
                         }
                     } header: {
                         HStack {
@@ -60,6 +64,9 @@ struct ExpenseListView: View {
                     }
                 }
             }
+        }
+        .sheet(isPresented: $showEdit) {
+            HomeView()
         }
     }
 }
