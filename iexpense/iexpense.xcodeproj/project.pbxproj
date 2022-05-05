@@ -26,6 +26,8 @@
 		B483ABF0282028D400F2A0CA /* Introspect in Frameworks */ = {isa = PBXBuildFile; productRef = B483ABEF282028D400F2A0CA /* Introspect */; };
 		B49C94062819B92600D77C46 /* NumberPadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B49C94052819B92600D77C46 /* NumberPadView.swift */; };
 		B49C940E2819C9E200D77C46 /* iexpenseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B49C940D2819C9E200D77C46 /* iexpenseTests.swift */; };
+		B4ED93182823554C006AB047 /* ExpenseListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4ED93172823554C006AB047 /* ExpenseListViewModel.swift */; };
+		B4ED931A282355A9006AB047 /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4ED9319282355A9006AB047 /* Date+Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +59,8 @@
 		B49C94052819B92600D77C46 /* NumberPadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberPadView.swift; sourceTree = "<group>"; };
 		B49C940B2819C9E200D77C46 /* iexpenseTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iexpenseTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B49C940D2819C9E200D77C46 /* iexpenseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iexpenseTests.swift; sourceTree = "<group>"; };
+		B4ED93172823554C006AB047 /* ExpenseListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseListViewModel.swift; sourceTree = "<group>"; };
+		B4ED9319282355A9006AB047 /* Date+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,6 +120,7 @@
 			children = (
 				B4026113281AECCD0097D7D4 /* NumberPadViewModel.swift */,
 				B4026126281CAAEE0097D7D4 /* HomeViewViewModel.swift */,
+				B4ED93172823554C006AB047 /* ExpenseListViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -172,6 +177,7 @@
 		B4ED93162822E635006AB047 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				B4ED9319282355A9006AB047 /* Date+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -290,8 +296,10 @@
 				B4026123281C7B770097D7D4 /* MainButtonStyle.swift in Sources */,
 				B47E159228197625001A374B /* ContentView.swift in Sources */,
 				B49C94062819B92600D77C46 /* NumberPadView.swift in Sources */,
+				B4ED93182823554C006AB047 /* ExpenseListViewModel.swift in Sources */,
 				B47E159028197625001A374B /* iexpenseApp.swift in Sources */,
 				B4026120281C7B3F0097D7D4 /* CategoryView.swift in Sources */,
+				B4ED931A282355A9006AB047 /* Date+Extensions.swift in Sources */,
 				B4026112281ADC830097D7D4 /* NumberPadItem.swift in Sources */,
 				B402611E281C34F30097D7D4 /* DatePickerButtonView.swift in Sources */,
 				B4026114281AECCD0097D7D4 /* NumberPadViewModel.swift in Sources */,
