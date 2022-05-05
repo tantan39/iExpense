@@ -17,19 +17,11 @@ extension Date {
     }
 }
 
-struct GroupExpense: Identifiable {
-    var id: UUID = UUID.init()
-    
-    let date: Date
-    var items: [ExpenseModel]
-}
-
 struct ExpenseCellView: View {
     @Binding var item: ExpenseModel
     
     var body: some View {
         VStack {
-            Text(item.date.display)
             HStack {
                 Text(item.category.icon)
                     .font(.largeTitle)
@@ -52,28 +44,6 @@ struct ExpenseCellView: View {
     }
 }
 
-class ExpenseListViewModel: ObservableObject {
-    @ObservedResults(ExpenseModel.self, sortDescriptor: SortDescriptor.init(keyPath: "date", ascending: false)) private var expenseModels
-    @Published var groupItems: [GroupExpense] = []
-    
-    private var cancellabels = Set<AnyCancellable>()
-    
-    init() {
-        expenseModels.objectWillChange.sink { _ in
-            for item in self.expenseModels {
-                if let index = self.groupItems.firstIndex(where: { Calendar.current.isDate($0.date, inSameDayAs: item.date) }) {
-                    self.groupItems[index].items.append(item)
-                } else {
-                    let newGroup = GroupExpense(date: item.date, items: [item])
-                    self.groupItems.append(newGroup)
-                }
-            }
-            
-        }
-        .store(in: &cancellabels)
-    }
-}
-
 struct ExpenseListView: View {
     @ObservedObject var viewModel: ExpenseListViewModel = ExpenseListViewModel()
     
@@ -85,6 +55,8 @@ struct ExpenseListView: View {
                         ForEach (group.items, id: \.id) { item in
                             ExpenseCellView(item: item)
                         }
+                    } header: {
+                        Text(group.wrappedValue.date.display)
                     }
                 }
             }
