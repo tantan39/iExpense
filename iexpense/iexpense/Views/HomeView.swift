@@ -20,10 +20,9 @@ struct HomeView: View {
                 ScrollView(.horizontal, showsIndicators: false) {
                     LazyHStack(spacing: 30) {
                         ForEach(ExpenseCategory.allCases, id: \.self) { category in
-                            
-                            CategoryView(title: category.icon + " " +  category.title, selected: .constant(viewModel.categorySelected == category))
+                            CategoryView(title: category.icon + " " +  category.title, selected: .constant(viewModel.item.category == category))
                                 .onTapGesture {
-                                    viewModel.categorySelected = category
+                                    viewModel.setCategory(category)
                                 }
                         }
                     }
@@ -35,9 +34,9 @@ struct HomeView: View {
                     LazyHStack(spacing: 30) {
                         ForEach(PaymentMethod.allCases, id: \.self) { method in
                             
-                            CategoryView(title: method.icon + " " +  method.title, selectedColor: .accentColor, selected: .constant(viewModel.paymentMethod == method))
+                            CategoryView(title: method.icon + " " +  method.title, selectedColor: .accentColor, selected: .constant(viewModel.item.paymentMethod == method))
                                 .onTapGesture {
-                                    viewModel.paymentMethod = method
+                                    viewModel.setPaymentMethod(method)
                                 }
                         }
                     }
@@ -49,7 +48,7 @@ struct HomeView: View {
                     
                 HStack {
                     
-                    DatePickerButtonView(date: $viewModel.date)
+                    DatePickerButtonView(date: $viewModel.item.date)
                         .frame(width: 60, height: 60)
                     
                     Button {
@@ -73,11 +72,11 @@ struct HomeView: View {
         }
         .onReceive(padViewModel.$value, perform: { value in
             guard !value.isEmpty else { return }
-            viewModel.expenseValue = value
+            viewModel.item.value = Double(value) ?? 0.0
         })
         .onReceive(padViewModel.$note) { note in
             guard !note.isEmpty else { return }
-            viewModel.note = note
+            viewModel.item.note = note
         }
         .ignoresSafeArea(.keyboard, edges: .bottom)
     }

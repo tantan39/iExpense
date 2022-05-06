@@ -11,32 +11,38 @@ import RealmSwift
 class HomeViewViewModel: ObservableObject {
     @ObservedResults(ExpenseModel.self) var items
     
-    @Published var expenseValue: String = ""
-    @Published var note: String? = ""
-    @Published var categorySelected: ExpenseCategory = .debtLoan
-    @Published var paymentMethod: PaymentMethod = .creditCard
-    @Published var date: Date = .init()
+    @Published var item: ExpenseModel = ExpenseModel(value: 0.0, category: .debtLoan, paymentMethod: .creditCard, date: .init(), note: "")
+//    @Published var expenseValue: String = ""
+//    @Published var note: String? = ""
+//    @Published var categorySelected: ExpenseCategory = .debtLoan
+//    @Published var paymentMethod: PaymentMethod = .creditCard
+//    @Published var date: Date = .init()
     
     var strDate: String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MMM-dd-YYYY"
         
         let calendar = Calendar.current
-        if calendar.isDateInToday(date) {
+        if calendar.isDateInToday(item.date) {
             return "Add for Today"
-        } else if calendar.isDateInYesterday(date) {
+        } else if calendar.isDateInYesterday(item.date) {
             return "Add for Yesterday"
         }
         
-        return "Add for \(dateFormatter.string(from: date))"
+        return "Add for \(dateFormatter.string(from: item.date))"
+    }
+    
+    func setCategory(_ category: ExpenseCategory) {
+        item.category = category
+        objectWillChange.send()
+    }
+    
+    func setPaymentMethod(_ method: PaymentMethod) {
+        item.paymentMethod = method
+        objectWillChange.send()
     }
     
     func addExpense() {
-        let item = ExpenseModel(value: Double(expenseValue) ?? 0.0,
-                                category: categorySelected,
-                                paymentMethod: paymentMethod,
-                                date: date,
-                                note: note)
         $items.append(item)
     }
     
