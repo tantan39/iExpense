@@ -25,15 +25,23 @@ struct MenuItemView: View {
                     .padding()
                 if selected {
                     Text(title)
+                        .font(.title2)
+                        .fontWeight(.semibold)
                         .foregroundColor(.white)
                         .offset(x: -10, y: 0)
                 }
             }
             .background(RoundedRectangle(cornerRadius: 10)
-                            .foregroundColor(selected ? .gray : .black))
+                            .foregroundColor(selected ? .black : .gray))
             .animation(.default, value: selected)
 
         }
 
+    }
+}
+
+struct MenuItemView_Previews: PreviewProvider {
+    static var previews: some View {
+        MenuItemView(title: "Transaction", icon: "note.text.badge.plus", selected: .constant(true), onClick: nil)
     }
 }
