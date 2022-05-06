@@ -50,6 +50,7 @@ struct ExpenseListView: View {
                         ForEach (group.items, id: \.id) { item in
                             ExpenseCellView(item: item)
                                 .onTapGesture {
+                                    self.viewModel.editItem = item.wrappedValue
                                     showEdit.toggle()
                                 }
                         }
@@ -66,7 +67,11 @@ struct ExpenseListView: View {
             }
         }
         .sheet(isPresented: $showEdit) {
-            HomeView()
+            HomeView(
+                viewModel: HomeViewViewModel(expense: self.viewModel.editItem!),
+                padViewModel: NumberPadViewModel(
+                    value: "\(self.viewModel.editItem?.value ?? 0.0)",
+                    note: self.viewModel.editItem?.note ?? ""))
         }
     }
 }

@@ -11,56 +11,60 @@ import RealmSwift
 class HomeViewViewModel: ObservableObject {
     @ObservedResults(ExpenseModel.self) var items
     
-    @Published var item: ExpenseModel = ExpenseModel(value: 0.0, category: .debtLoan, paymentMethod: .creditCard, date: .init(), note: "")
-//    @Published var expenseValue: String = ""
-//    @Published var note: String? = ""
-//    @Published var categorySelected: ExpenseCategory = .debtLoan
-//    @Published var paymentMethod: PaymentMethod = .creditCard
-//    @Published var date: Date = .init()
+    var item: ExpenseModel?
+    @Published var expenseValue: String = ""
+    @Published var note: String? = ""
+    @Published var categorySelected: ExpenseCategory = .debtLoan
+    @Published var paymentMethod: PaymentMethod = .creditCard
+    @Published var date: Date = .init()
+    let realm = try! Realm()
+    
+    init(expense: ExpenseModel = ExpenseModel(value: 0.0, category: .debtLoan, paymentMethod: .creditCard, date: .init(), note: "")) {
+        self.item = expense
+        self.expenseValue = "\(expense.value)"
+        self.note = expense.note
+        self.categorySelected = expense.category
+        self.paymentMethod = expense.paymentMethod
+        self.date = expense.date
+        
+    }
     
     var strDate: String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MMM-dd-YYYY"
         
         let calendar = Calendar.current
-        if calendar.isDateInToday(item.date) {
+        if calendar.isDateInToday(date) {
             return "Add for Today"
-        } else if calendar.isDateInYesterday(item.date) {
+        } else if calendar.isDateInYesterday(date) {
             return "Add for Yesterday"
         }
         
-        return "Add for \(dateFormatter.string(from: item.date))"
-    }
-    
-    func setCategory(_ category: ExpenseCategory) {
-        item.category = category
-        objectWillChange.send()
-    }
-    
-    func setPaymentMethod(_ method: PaymentMethod) {
-        item.paymentMethod = method
-        objectWillChange.send()
+        return "Add for \(dateFormatter.string(from: date))"
     }
     
     func addExpense() {
+        let item = ExpenseModel(value: Double(expenseValue) ?? 0.0,
+                                category: categorySelected,
+                                paymentMethod: paymentMethod,
+                                date: date,
+                                note: note)
         $items.append(item)
     }
     
     func update(_ item: ExpenseModel) {
-        if let _ = items.firstIndex(where: { $0.id == item.id }) {
-            do {
-                let realm = try Realm()
-                let expense = realm.object(ofType: ExpenseModel.self, forPrimaryKey: item.id)
-                try realm.write {
-                    expense?.value = item.value
-                    expense?.note = item.note
-                    expense?.category = item.category
-                    expense?.paymentMethod = item.paymentMethod
-                    expense?.date = item.date
-                }
-            } catch {
-                
+            let realm = try! Realm()
+            let expense = realm.object(ofType: ExpenseModel.self, forPrimaryKey: item.id)
+        do {
+            try realm.write {
+                expense?.value = Double(self.expenseValue) ?? 0.0
+                expense?.note = self.note
+                expense?.category = self.categorySelected
+                expense?.paymentMethod = self.paymentMethod
+                expense?.date = self.date
             }
+        } catch {
+            print("Fail to write")
         }
     }
 }

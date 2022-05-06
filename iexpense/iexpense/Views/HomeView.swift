@@ -11,6 +11,7 @@ import Combine
 struct HomeView: View {
     @ObservedObject var viewModel: HomeViewViewModel = HomeViewViewModel()
     @ObservedObject var padViewModel: NumberPadViewModel = NumberPadViewModel()
+    @Environment(\.presentationMode) var presentationMode
     
     var body: some View {
         GeometryReader { _ in
@@ -20,9 +21,9 @@ struct HomeView: View {
                 ScrollView(.horizontal, showsIndicators: false) {
                     LazyHStack(spacing: 30) {
                         ForEach(ExpenseCategory.allCases, id: \.self) { category in
-                            CategoryView(title: category.icon + " " +  category.title, selected: .constant(viewModel.item.category == category))
+                            CategoryView(title: category.icon + " " +  category.title, selected: .constant(viewModel.categorySelected == category))
                                 .onTapGesture {
-                                    viewModel.setCategory(category)
+                                    viewModel.categorySelected = category
                                 }
                         }
                     }
@@ -34,9 +35,9 @@ struct HomeView: View {
                     LazyHStack(spacing: 30) {
                         ForEach(PaymentMethod.allCases, id: \.self) { method in
                             
-                            CategoryView(title: method.icon + " " +  method.title, selectedColor: .accentColor, selected: .constant(viewModel.item.paymentMethod == method))
+                            CategoryView(title: method.icon + " " +  method.title, selectedColor: .accentColor, selected: .constant(viewModel.paymentMethod == method))
                                 .onTapGesture {
-                                    viewModel.setPaymentMethod(method)
+                                    viewModel.paymentMethod = method
                                 }
                         }
                     }
@@ -48,13 +49,18 @@ struct HomeView: View {
                     
                 HStack {
                     
-                    DatePickerButtonView(date: $viewModel.item.date)
+                    DatePickerButtonView(date: $viewModel.date)
                         .frame(width: 60, height: 60)
                     
                     Button {
-                        viewModel.addExpense()
-                        padViewModel.value = ""
-                        padViewModel.note = ""
+                        if let editItem = viewModel.item {
+                            viewModel.update(editItem)
+                            presentationMode.wrappedValue.dismiss()
+                        } else {
+                            viewModel.addExpense()
+                            padViewModel.value = ""
+                            padViewModel.note = ""
+                        }
                         
                     } label: {
                         Text(viewModel.strDate)
@@ -72,11 +78,11 @@ struct HomeView: View {
         }
         .onReceive(padViewModel.$value, perform: { value in
             guard !value.isEmpty else { return }
-            viewModel.item.value = Double(value) ?? 0.0
+            viewModel.expenseValue = value
         })
         .onReceive(padViewModel.$note) { note in
             guard !note.isEmpty else { return }
-            viewModel.item.note = note
+            viewModel.note = note
         }
         .ignoresSafeArea(.keyboard, edges: .bottom)
     }

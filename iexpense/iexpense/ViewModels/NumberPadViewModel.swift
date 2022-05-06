@@ -29,6 +29,11 @@ class NumberPadViewModel: ObservableObject {
     @Published var centNumberCount: Int = 0
     private let inputMaxCount = 9
     
+    init(value: String = "", note: String = "") {
+        self.value = value
+        self.note = note
+    }
+    
     var isValidated: Bool {
         guard let doubleValue = Double(value) else { return false }
         return doubleValue > 0.0

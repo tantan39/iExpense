@@ -19,6 +19,7 @@ struct GroupExpense: Identifiable {
 class ExpenseListViewModel: ObservableObject {
     @ObservedResults(ExpenseModel.self, sortDescriptor: SortDescriptor.init(keyPath: "date", ascending: false)) private var expenseModels
     @Published var groupItems: [GroupExpense] = []
+    @Published var editItem: ExpenseModel?
     
     private var cancellabels = Set<AnyCancellable>()
     
