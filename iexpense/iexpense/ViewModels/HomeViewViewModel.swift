@@ -54,8 +54,8 @@ class HomeViewViewModel: ObservableObject {
     }
     
     func update(_ item: ExpenseModel) {
-            let realm = try! Realm()
-            let expense = realm.object(ofType: ExpenseModel.self, forPrimaryKey: item.id)
+        let realm = try! Realm()
+        let expense = realm.object(ofType: ExpenseModel.self, forPrimaryKey: item.id)
         do {
             try realm.write {
                 expense?.value = Double(self.expenseValue) ?? 0.0
@@ -63,6 +63,18 @@ class HomeViewViewModel: ObservableObject {
                 expense?.category = self.categorySelected
                 expense?.paymentMethod = self.paymentMethod
                 expense?.date = self.date
+            }
+        } catch {
+            print("Fail to write")
+        }
+    }
+    
+    func delete(_ item: ExpenseModel) {
+        let realm = try! Realm()
+        guard let expense = realm.object(ofType: ExpenseModel.self, forPrimaryKey: item.id) else { return }
+        do {
+            try realm.write {
+                realm.delete(expense)
             }
         } catch {
             print("Fail to write")
