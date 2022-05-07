@@ -8,7 +8,7 @@
 import SwiftUI
 struct NumberPadView: View {
     
-    var colums = [GridItem(.adaptive(minimum: 100, maximum: 100), spacing: 20, alignment: .center)]
+    var colums = [GridItem(.adaptive(minimum: 90, maximum: 90), spacing: 30, alignment: .center)]
     
     @ObservedObject var viewModel: NumberPadViewModel
     var body: some View {
@@ -22,6 +22,7 @@ struct NumberPadView: View {
             .padding(.top, 30)
             
             TextField(viewModel.note.isEmpty ? "Add Note" : viewModel.note, text: $viewModel.note)
+                .foregroundColor(.gray)
                 .font(.headline)
                 .multilineTextAlignment(.center)
                 .padding(.horizontal)
@@ -32,9 +33,10 @@ struct NumberPadView: View {
                         Text("\(item.wrappedValue.title)")
                             .font(.largeTitle)
                             .fontWeight(.bold)
-                            .frame(width: 90, height: 90)
+//                            .frame(width: 90, height: 90)
                         
                             .foregroundColor(viewModel.value.isEmpty ? .gray : .black)
+                            .padding()
                             .disabled(viewModel.value.isEmpty)
                             .onTapGesture {
                                 self.viewModel.updateValue(item.wrappedValue)
@@ -43,7 +45,8 @@ struct NumberPadView: View {
                         Text("\(item.wrappedValue.title)")
                             .font(.largeTitle)
                             .fontWeight(.semibold)
-                            .frame(width: 90, height: 90)
+//                            .frame(width: 90, height: 90)
+                            .padding()
                             .onTapGesture {
                                 self.viewModel.updateValue(item.wrappedValue)
                             }
