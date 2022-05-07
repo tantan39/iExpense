@@ -16,6 +16,38 @@ struct HomeView: View {
     var body: some View {
         GeometryReader { _ in
             VStack {
+                if let editItem = viewModel.editItem {
+                    HStack {
+                        Button {
+                            viewModel.delete(editItem)
+                            presentationMode.wrappedValue.dismiss()
+                        } label: {
+                            Image(systemName: "trash.fill")
+                                .resizable()
+                                .frame(width: 25, height: 25)
+                                .foregroundColor(.red)
+                        }
+                        
+                        Spacer()
+                        
+                        Text("Edit Transaction")
+                            .font(.largeTitle)
+                            .fontWeight(.semibold)
+                        
+                        Spacer()
+                        
+                        Button {
+                            presentationMode.wrappedValue.dismiss()
+                        } label: {
+                            Image(systemName: "xmark.circle.fill")
+                                .resizable()
+                                .frame(width: 25, height: 25)
+                        }
+
+                    }
+                    .padding()
+                }
+                
                 NumberPadView(viewModel: padViewModel)
                     .padding(.bottom, 10)
                 ScrollView(.horizontal, showsIndicators: false) {

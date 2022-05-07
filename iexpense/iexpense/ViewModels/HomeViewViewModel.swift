@@ -75,6 +75,7 @@ class HomeViewViewModel: ObservableObject {
         do {
             try realm.write {
                 realm.delete(expense)
+                self.objectWillChange.send()
             }
         } catch {
             print("Fail to write")
