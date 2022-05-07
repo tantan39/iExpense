@@ -11,7 +11,7 @@ import RealmSwift
 class HomeViewViewModel: ObservableObject {
     @ObservedResults(ExpenseModel.self) var items
     
-    var item: ExpenseModel?
+    var editItem: ExpenseModel?
     @Published var expenseValue: String = ""
     @Published var note: String? = ""
     @Published var categorySelected: ExpenseCategory = .debtLoan
@@ -21,7 +21,7 @@ class HomeViewViewModel: ObservableObject {
     
     init(expense: ExpenseModel? = nil) {
         guard let expense = expense else { return }
-        self.item = expense
+        self.editItem = expense
         self.expenseValue = "\(expense.value)"
         self.note = expense.note
         self.categorySelected = expense.category

@@ -53,7 +53,7 @@ struct HomeView: View {
                         .frame(width: 60, height: 60)
                     
                     Button {
-                        if let editItem = viewModel.item {
+                        if let editItem = viewModel.editItem {
                             viewModel.update(editItem)
                             presentationMode.wrappedValue.dismiss()
                         } else {
