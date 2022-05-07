@@ -19,7 +19,8 @@ class HomeViewViewModel: ObservableObject {
     @Published var date: Date = .init()
     let realm = try! Realm()
     
-    init(expense: ExpenseModel = ExpenseModel(value: 0.0, category: .debtLoan, paymentMethod: .creditCard, date: .init(), note: "")) {
+    init(expense: ExpenseModel? = nil) {
+        guard let expense = expense else { return }
         self.item = expense
         self.expenseValue = "\(expense.value)"
         self.note = expense.note
