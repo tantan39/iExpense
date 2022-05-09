@@ -49,11 +49,12 @@ struct ExpenseListView: View {
                     Section {
                         ForEach (group.items, id: \.id) { item in
                             ExpenseCellView(item: item)
+                                .padding(.leading, 16)
+                                .contentShape(Rectangle())
                                 .onTapGesture {
                                     self.viewModel.editItem = item.wrappedValue
                                     showEdit.toggle()
                                 }
-                                .padding(.leading, 16)
                         }
                         .listRowSeparator(.hidden)
                     } header: {
