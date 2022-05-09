@@ -54,6 +54,7 @@ struct ExpenseListView: View {
                                     showEdit.toggle()
                                 }
                         }
+                        .listRowSeparator(.hidden)
                     } header: {
                         HStack {
                             Text(group.wrappedValue.date.display)
@@ -65,6 +66,7 @@ struct ExpenseListView: View {
                     }
                 }
             }
+            .listStyle(.plain)
         }
         .sheet(isPresented: $showEdit) {
             HomeView(
