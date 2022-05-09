@@ -57,8 +57,17 @@ struct ExpenseListView: View {
                         .listRowSeparator(.hidden)
                     } header: {
                         HStack {
+                            VStack {
+                                Text("\(group.wrappedValue.date.getTime().day)")
+                                    .font(.title)
+                                    .fontWeight(.bold)
+                                    .foregroundColor(.black)
+                                Spacer()
+                            }
+                            
                             Text(group.wrappedValue.date.display)
                                 .font(.headline)
+                                .lineSpacing(-4)
                             Spacer()
                             Text(viewModel.totalExpense(by: group.wrappedValue))
                                 .font(.headline)
