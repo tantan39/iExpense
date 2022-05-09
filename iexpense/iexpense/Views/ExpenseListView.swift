@@ -53,6 +53,7 @@ struct ExpenseListView: View {
                                     self.viewModel.editItem = item.wrappedValue
                                     showEdit.toggle()
                                 }
+                                .padding(.leading, 16)
                         }
                         .listRowSeparator(.hidden)
                     } header: {
@@ -75,7 +76,8 @@ struct ExpenseListView: View {
                     }
                 }
             }
-            .listStyle(.plain)
+            .listStyle(.sidebar)
+            .listSectionSeparatorTint(.accentColor)
         }
         .sheet(isPresented: $showEdit) {
             HomeView(
