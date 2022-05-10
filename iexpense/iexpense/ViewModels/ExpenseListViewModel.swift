@@ -14,6 +14,13 @@ struct GroupExpense: Identifiable {
     
     var date: Date
     var items: [ExpenseModel]
+    
+    var expenseTotal: Double {
+        let total = items.reduce(0) { partialResult, item in
+            partialResult + item.value
+        }
+        return total
+    }
 }
 
 class ExpenseListViewModel: ObservableObject {
@@ -22,6 +29,13 @@ class ExpenseListViewModel: ObservableObject {
     @Published var editItem: ExpenseModel?
     
     private var cancellabels = Set<AnyCancellable>()
+    
+    var total: Double {
+        let total = groupItems.reduce(0) { partialResult, group in
+            partialResult + group.expenseTotal
+        }
+        return total
+    }
     
     init() {
         expenseModels.objectWillChange.sink { _ in

@@ -45,43 +45,60 @@ struct ExpenseListView: View {
     var body: some View {
         VStack {
             List {
+                Section {
+                    VStack(alignment: .leading) {
+                        Text("Total")
+                            .font(.title)
+                            .fontWeight(.bold)
+                        let value = String(format: "$%.2f", viewModel.total)
+                        Text(value)
+                            .font(.title)
+                            .fontWeight(.bold)
+                    }
+                }
+                
                 ForEach ($viewModel.groupItems, id: \.id) { group in
                     Section {
-                        ForEach (group.items, id: \.id) { item in
-                            ExpenseCellView(item: item)
-                                .padding(.leading, 16)
-                                .contentShape(Rectangle())
-                                .onTapGesture {
-                                    self.viewModel.editItem = item.wrappedValue
-                                    showEdit.toggle()
+                        VStack {
+                            HStack {
+                                VStack {
+                                    Text("\(group.wrappedValue.date.getTime().day)")
+                                        .font(.title)
+                                        .fontWeight(.bold)
+                                        .foregroundColor(.black)
+                                    Spacer()
                                 }
-                        }
-                        .listRowSeparator(.hidden)
-                    } header: {
-                        HStack {
-                            VStack {
-                                Text("\(group.wrappedValue.date.getTime().day)")
-                                    .font(.title)
-                                    .fontWeight(.bold)
-                                    .foregroundColor(.black)
+                                
+                                Text(group.wrappedValue.date.display)
+                                    .font(.headline)
+                                    .lineSpacing(-4)
                                 Spacer()
+                                Text(viewModel.totalExpense(by: group.wrappedValue))
+                                    .font(.headline)
                             }
+                            .padding(.bottom, 10)
                             
-                            Text(group.wrappedValue.date.display)
-                                .font(.headline)
-                                .lineSpacing(-4)
-                            Spacer()
-                            Text(viewModel.totalExpense(by: group.wrappedValue))
-                                .font(.headline)
+                            ForEach (group.items, id: \.id) { item in
+                                ExpenseCellView(item: item)
+                                    .padding(.bottom, 4)
+                                    .contentShape(Rectangle())
+                                    .onTapGesture {
+                                        self.viewModel.editItem = item.wrappedValue
+                                        showEdit.toggle()
+                                    }
+                            }
+                            .listRowSeparator(.hidden)
                         }
+                    } header: {
+                        
                     }
                 }
             }
-            .listStyle(.sidebar)
+//            .listStyle(.sidebar)
             .listSectionSeparatorTint(.accentColor)
-            .onAppear(perform: {
-                UITableView.appearance().backgroundColor = UIColor.white
-            })
+//            .onAppear(perform: {
+//                UITableView.appearance().backgroundColor = UIColor.white
+//            })
         }
         .sheet(isPresented: $showEdit) {
             HomeView(
