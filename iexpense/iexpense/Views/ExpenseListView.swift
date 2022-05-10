@@ -79,6 +79,9 @@ struct ExpenseListView: View {
             }
             .listStyle(.sidebar)
             .listSectionSeparatorTint(.accentColor)
+            .onAppear(perform: {
+                UITableView.appearance().backgroundColor = UIColor.white
+            })
         }
         .sheet(isPresented: $showEdit) {
             HomeView(
