@@ -78,9 +78,11 @@ struct ExpenseListView: View {
                             }
                             .padding(.bottom, 10)
                             
+                            Divider()
+                            
                             ForEach (group.items, id: \.id) { item in
                                 ExpenseCellView(item: item)
-                                    .padding(.bottom, 4)
+                                    .padding(.bottom)
                                     .contentShape(Rectangle())
                                     .onTapGesture {
                                         self.viewModel.editItem = item.wrappedValue
@@ -94,11 +96,6 @@ struct ExpenseListView: View {
                     }
                 }
             }
-//            .listStyle(.sidebar)
-            .listSectionSeparatorTint(.accentColor)
-//            .onAppear(perform: {
-//                UITableView.appearance().backgroundColor = UIColor.white
-//            })
         }
         .sheet(isPresented: $showEdit) {
             HomeView(
