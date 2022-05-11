@@ -46,14 +46,32 @@ struct ExpenseListView: View {
         VStack {
             List {
                 Section {
-                    VStack(alignment: .leading) {
-                        Text("Total")
-                            .font(.title)
-                            .fontWeight(.bold)
-                        let value = String(format: "$%.2f", viewModel.total)
-                        Text(value)
-                            .font(.title)
-                            .fontWeight(.bold)
+                    HStack {
+                        Menu("This month") {
+                            Button {
+                                
+                            } label: {
+                                Text("Last month")
+                            }
+
+                            Button {
+                                
+                            } label: {
+                                Text("This year")
+                            }
+                        }
+                        
+                        Spacer()
+                        
+                        VStack(alignment: .leading) {
+                            Text("Total")
+                                .font(.title)
+                                .fontWeight(.bold)
+                            let value = String(format: "$%.2f", viewModel.total)
+                            Text(value)
+                                .font(.title)
+                                .fontWeight(.bold)
+                        }
                     }
                 }
                 
