@@ -77,11 +77,11 @@ class ExpenseListViewModel: ObservableObject {
                 print("timerange set")
             switch range {
             case .thisMonth:
-                self.filteringGroupItems = self.groupItems.filter({ $0.date.getTime().month == Date().getTime().month })
+                self.filteringGroupItems = self.groupItems.filter({ $0.date.isInSameMonth(as: Date()) })
             case .lastMonth:
                 self.filteringGroupItems = self.groupItems.filter({ $0.date.getTime().month == Date().getTime().month - 1 })
             case .thisYear:
-                self.filteringGroupItems = self.groupItems
+                self.filteringGroupItems = self.groupItems.filter({ $0.date.isInSameYear(as: Date()) })
             }
         }
         .store(in: &cancellabels)
