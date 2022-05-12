@@ -36,6 +36,12 @@ struct ExpenseListView: View {
                             } label: {
                                 Text(TimeRange.thisYear.title)
                             }
+                            
+                            Button {
+                                viewModel.timeRange = .lastYear
+                            } label: {
+                                Text(TimeRange.lastYear.title)
+                            }
                         }
                         
                         Spacer()

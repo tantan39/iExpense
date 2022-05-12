@@ -27,6 +27,7 @@ enum TimeRange: Int {
     case thisMonth
     case lastMonth
     case thisYear
+    case lastYear
     
     var title: String {
         switch self {
@@ -36,6 +37,8 @@ enum TimeRange: Int {
             return "Last month"
         case .thisYear:
             return "This year"
+        case .lastYear:
+            return "Last year"
         }
     }
 }
@@ -82,6 +85,8 @@ class ExpenseListViewModel: ObservableObject {
                 self.filteringGroupItems = self.groupItems.filter({ $0.date.getTime().month == Date().getTime().month - 1 })
             case .thisYear:
                 self.filteringGroupItems = self.groupItems.filter({ $0.date.isInSameYear(as: Date()) })
+            case .lastYear:
+                self.filteringGroupItems = self.groupItems.filter({ $0.date.getTime().month == Date().getTime().year - 1 })
             }
         }
         .store(in: &cancellabels)
