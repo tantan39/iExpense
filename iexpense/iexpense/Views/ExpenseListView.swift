@@ -18,7 +18,7 @@ struct ExpenseListView: View {
             List {
                 Section {
                     HStack {
-                        Menu(viewModel.timeRange.title) {
+                        Menu {
                             Button {
                                 viewModel.timeRange = .thisMonth
                             } label: {
@@ -41,6 +41,15 @@ struct ExpenseListView: View {
                                 viewModel.timeRange = .lastYear
                             } label: {
                                 Text(TimeRange.lastYear.title)
+                            }
+                        } label: {
+                            HStack {
+                                Text(viewModel.timeRange.title)
+                                    .font(.title)
+                                    .foregroundColor(.black)
+                                    .fontWeight(.bold)
+                                Image(systemName: "chevron.down")
+                                    .foregroundColor(.black)
                             }
                         }
                         
