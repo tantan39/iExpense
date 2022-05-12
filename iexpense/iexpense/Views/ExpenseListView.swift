@@ -18,17 +18,23 @@ struct ExpenseListView: View {
             List {
                 Section {
                     HStack {
-                        Menu("This month") {
+                        Menu(viewModel.timeRange.title) {
                             Button {
-                                
+                                viewModel.timeRange = .thisMonth
                             } label: {
-                                Text("Last month")
+                                Text(TimeRange.thisMonth.title)
+                            }
+                            
+                            Button {
+                                viewModel.timeRange = .lastMonth
+                            } label: {
+                                Text(TimeRange.lastMonth.title)
                             }
 
                             Button {
-                                
+                                viewModel.timeRange = .thisYear
                             } label: {
-                                Text("This year")
+                                Text(TimeRange.thisYear.title)
                             }
                         }
                         
@@ -46,7 +52,7 @@ struct ExpenseListView: View {
                     }
                 }
                 
-                ForEach ($viewModel.groupItems, id: \.id) { group in
+                ForEach ($viewModel.filteringGroupItems, id: \.id) { group in
                     Section {
                         VStack {
                             HStack {

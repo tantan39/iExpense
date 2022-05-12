@@ -23,15 +23,34 @@ struct GroupExpense: Identifiable {
     }
 }
 
+enum TimeRange: Int {
+    case thisMonth
+    case lastMonth
+    case thisYear
+    
+    var title: String {
+        switch self {
+        case .thisMonth:
+            return "This month"
+        case .lastMonth:
+            return "Last month"
+        case .thisYear:
+            return "This year"
+        }
+    }
+}
+
 class ExpenseListViewModel: ObservableObject {
     @ObservedResults(ExpenseModel.self, sortDescriptor: SortDescriptor.init(keyPath: "date", ascending: false)) private var expenseModels
     @Published var groupItems: [GroupExpense] = []
+    @Published var filteringGroupItems: [GroupExpense] = []
     @Published var editItem: ExpenseModel?
+    @Published var timeRange: TimeRange = .thisMonth
     
     private var cancellabels = Set<AnyCancellable>()
     
     var total: Double {
-        let total = groupItems.reduce(0) { partialResult, group in
+        let total = filteringGroupItems.reduce(0) { partialResult, group in
             partialResult + group.expenseTotal
         }
         return total
@@ -48,7 +67,22 @@ class ExpenseListViewModel: ObservableObject {
                     self.groupItems.append(newGroup)
                 }
             }
-            
+            self.timeRange = .thisMonth
+        }
+        .store(in: &cancellabels)
+        
+        $timeRange
+            .dropFirst()
+            .sink { range in
+                print("timerange set")
+            switch range {
+            case .thisMonth:
+                self.filteringGroupItems = self.groupItems.filter({ $0.date.getTime().month == Date().getTime().month })
+            case .lastMonth:
+                self.filteringGroupItems = self.groupItems.filter({ $0.date.getTime().month == Date().getTime().month - 1 })
+            case .thisYear:
+                self.filteringGroupItems = self.groupItems
+            }
         }
         .store(in: &cancellabels)
     }
