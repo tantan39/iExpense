@@ -40,4 +40,11 @@ extension Date {
         let second = calendar.component(.second, from: self)
         return (year, month, day, hour, minute, second)
     }
+    
+    func isEqual(to date: Date, toGranularity component: Calendar.Component, in calendar: Calendar = .current) -> Bool {
+        calendar.isDate(self, equalTo: date, toGranularity: component)
+    }
+    
+    func isInSameYear(as date: Date) -> Bool { isEqual(to: date, toGranularity: .year) }
+    func isInSameMonth(as date: Date) -> Bool { isEqual(to: date, toGranularity: .month) }
 }
