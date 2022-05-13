@@ -26,6 +26,19 @@ struct SignInView: View {
             .padding(.top, 40)
             
             Spacer()
+            
+            Button {
+                
+            } label: {
+                Text("Anonymous")
+                    .font(.title2)
+                    .fontWeight(.semibold)
+                    .foregroundColor(.white)
+            }
+            .frame(width: 400, height: 60)
+            .background(RoundedRectangle(cornerRadius: 15)
+                            .fill()
+                            .foregroundColor(Color.black))
 
             AppleSignInButton()
                 .frame(height: 60)
