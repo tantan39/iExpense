@@ -35,9 +35,9 @@ struct SignInView: View {
                     .fontWeight(.semibold)
                     .foregroundColor(.white)
             }
-            .frame(width: 400, height: 60)
-            .background(RoundedRectangle(cornerRadius: 15)
-                            .fill()
+            .frame(maxWidth: .infinity)
+            .frame(height: 60)
+            .background(RoundedRectangle(cornerRadius: 6)
                             .foregroundColor(Color.black))
 
             AppleSignInButton()
