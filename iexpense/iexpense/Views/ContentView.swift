@@ -6,13 +6,14 @@
 //
 
 import SwiftUI
+import Firebase
 
 struct ContentView: View {
     @ObservedObject var auth: ExpenseAuth = ExpenseAuth()
     
     var body: some View {
         Group {
-            if let _ = auth.user {
+            if let _ = Auth.auth().currentUser {
                 PageView()
                     .edgesIgnoringSafeArea([.leading, .trailing, .bottom])
             } else {
