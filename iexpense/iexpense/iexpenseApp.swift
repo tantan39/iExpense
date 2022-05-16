@@ -22,7 +22,7 @@ struct iexpenseApp: App {
 extension Resolver: ResolverRegistering {
     public static func registerAllServices() {
         register {
-            ExpenseAuth()
+            FireStoreExpenseService() as ExpenseLoader
         }
         .scope(.application)
 

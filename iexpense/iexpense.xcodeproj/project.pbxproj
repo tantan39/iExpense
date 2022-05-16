@@ -34,6 +34,7 @@
 		B45748E82832997F00AE963C /* SignInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B45748E72832997F00AE963C /* SignInViewModel.swift */; };
 		B45748EB28329E5300AE963C /* Resolver in Frameworks */ = {isa = PBXBuildFile; productRef = B45748EA28329E5300AE963C /* Resolver */; };
 		B45748F12832A11700AE963C /* ExpenseAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = B45748F02832A11700AE963C /* ExpenseAuth.swift */; };
+		B45748F42832A8FF00AE963C /* FireStoreExpenseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B45748F32832A8FF00AE963C /* FireStoreExpenseService.swift */; };
 		B46BF5402824213200100A19 /* MenuItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B46BF53F2824213200100A19 /* MenuItemView.swift */; };
 		B47E159028197625001A374B /* iexpenseApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B47E158F28197625001A374B /* iexpenseApp.swift */; };
 		B47E159228197625001A374B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B47E159128197625001A374B /* ContentView.swift */; };
@@ -78,6 +79,7 @@
 		B45748E528328F5E00AE963C /* ExpenseLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseLoader.swift; sourceTree = "<group>"; };
 		B45748E72832997F00AE963C /* SignInViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewModel.swift; sourceTree = "<group>"; };
 		B45748F02832A11700AE963C /* ExpenseAuth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseAuth.swift; sourceTree = "<group>"; };
+		B45748F32832A8FF00AE963C /* FireStoreExpenseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FireStoreExpenseService.swift; sourceTree = "<group>"; };
 		B46BF53F2824213200100A19 /* MenuItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItemView.swift; sourceTree = "<group>"; };
 		B47E158C28197625001A374B /* iexpense.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iexpense.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B47E158F28197625001A374B /* iexpenseApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iexpenseApp.swift; sourceTree = "<group>"; };
@@ -176,6 +178,14 @@
 			path = Domain;
 			sourceTree = "<group>";
 		};
+		B45748F22832A8AC00AE963C /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				B45748F32832A8FF00AE963C /* FireStoreExpenseService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
 		B47E158328197625001A374B = {
 			isa = PBXGroup;
 			children = (
@@ -199,6 +209,7 @@
 			children = (
 				B47E158F28197625001A374B /* iexpenseApp.swift */,
 				B45748E428328F3200AE963C /* Domain */,
+				B45748F22832A8AC00AE963C /* Services */,
 				B4ED93162822E635006AB047 /* Extensions */,
 				B4026121281C7B650097D7D4 /* Components */,
 				B4026110281ADC660097D7D4 /* Models */,
@@ -358,6 +369,7 @@
 			files = (
 				B402611C281B13520097D7D4 /* HomeView.swift in Sources */,
 				B4026116281AEE270097D7D4 /* ExpenseModel.swift in Sources */,
+				B45748F42832A8FF00AE963C /* FireStoreExpenseService.swift in Sources */,
 				B45748D0282EB4DA00AE963C /* AppDelegate.swift in Sources */,
 				B4026123281C7B770097D7D4 /* MainButtonStyle.swift in Sources */,
 				B45748E82832997F00AE963C /* SignInViewModel.swift in Sources */,

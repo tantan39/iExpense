@@ -8,6 +8,15 @@
 import Foundation
 import RealmSwift
 
+struct ExpenseRemoteModel {
+    let id: UUID
+    let value: Double
+    let category: ExpenseCategory
+    let paymentMethod: PaymentMethod
+    let date: Date
+    let note: String?
+}
+
 class ExpenseModel: Object, ObjectKeyIdentifiable {
     @Persisted(primaryKey: true) var id: ObjectId
     @Persisted var value: Double = 0.0

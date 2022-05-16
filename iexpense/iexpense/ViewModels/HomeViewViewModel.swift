@@ -7,8 +7,10 @@
 
 import Foundation
 import RealmSwift
+import Resolver
 
 class HomeViewViewModel: ObservableObject {
+    @Injected var expenseService: ExpenseLoader    
     @ObservedResults(ExpenseModel.self) var items
     
     var editItem: ExpenseModel?
@@ -50,7 +52,8 @@ class HomeViewViewModel: ObservableObject {
                                 paymentMethod: paymentMethod,
                                 date: date,
                                 note: note)
-        $items.append(item)
+//        $items.append(item)
+        expenseService.addExpense(item)
     }
     
     func update(_ item: ExpenseModel) {
