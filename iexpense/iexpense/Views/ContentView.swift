@@ -8,10 +8,18 @@
 import SwiftUI
 
 struct ContentView: View {
-
+    @ObservedObject var auth: ExpenseAuth = ExpenseAuth()
+    
     var body: some View {
-        PageView()
-            .edgesIgnoringSafeArea([.leading, .trailing, .bottom])
+        Group {
+            if let _ = auth.user {
+                PageView()
+                    .edgesIgnoringSafeArea([.leading, .trailing, .bottom])
+            } else {
+                SignInView()
+            }
+        }
+        .environmentObject(auth)
     }
 }
 

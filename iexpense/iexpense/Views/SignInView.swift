@@ -6,8 +6,12 @@
 //
 
 import SwiftUI
+import Firebase
 
 struct SignInView: View {
+    @EnvironmentObject var auth: ExpenseAuth
+    @ObservedObject var viewModel = SignInViewModel()
+    
     var body: some View {
         VStack {
             Image(systemName:"dollarsign.circle")
@@ -28,9 +32,13 @@ struct SignInView: View {
             Spacer()
             
             Button {
+                Task {
+                    let user = try await viewModel.signInAnonymously()
+                    auth.user = user
+                }
                 
             } label: {
-                Text("Anonymous")
+                Text("Sign In as a Anonymous")
                     .font(.title2)
                     .fontWeight(.semibold)
                     .foregroundColor(.white)
@@ -40,8 +48,8 @@ struct SignInView: View {
             .background(RoundedRectangle(cornerRadius: 6)
                             .foregroundColor(Color.black))
 
-            AppleSignInButton()
-                .frame(height: 60)
+//            AppleSignInButton()
+//                .frame(height: 60)
             
             Divider()
                 .padding(.top, 20.0)

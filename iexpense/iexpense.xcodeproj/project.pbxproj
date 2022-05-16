@@ -33,6 +33,7 @@
 		B45748E628328F5E00AE963C /* ExpenseLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = B45748E528328F5E00AE963C /* ExpenseLoader.swift */; };
 		B45748E82832997F00AE963C /* SignInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B45748E72832997F00AE963C /* SignInViewModel.swift */; };
 		B45748EB28329E5300AE963C /* Resolver in Frameworks */ = {isa = PBXBuildFile; productRef = B45748EA28329E5300AE963C /* Resolver */; };
+		B45748F12832A11700AE963C /* ExpenseAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = B45748F02832A11700AE963C /* ExpenseAuth.swift */; };
 		B46BF5402824213200100A19 /* MenuItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B46BF53F2824213200100A19 /* MenuItemView.swift */; };
 		B47E159028197625001A374B /* iexpenseApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B47E158F28197625001A374B /* iexpenseApp.swift */; };
 		B47E159228197625001A374B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B47E159128197625001A374B /* ContentView.swift */; };
@@ -76,6 +77,7 @@
 		B45748E2282EF53300AE963C /* AppleSignInButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppleSignInButton.swift; sourceTree = "<group>"; };
 		B45748E528328F5E00AE963C /* ExpenseLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseLoader.swift; sourceTree = "<group>"; };
 		B45748E72832997F00AE963C /* SignInViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewModel.swift; sourceTree = "<group>"; };
+		B45748F02832A11700AE963C /* ExpenseAuth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseAuth.swift; sourceTree = "<group>"; };
 		B46BF53F2824213200100A19 /* MenuItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItemView.swift; sourceTree = "<group>"; };
 		B47E158C28197625001A374B /* iexpense.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iexpense.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B47E158F28197625001A374B /* iexpenseApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iexpenseApp.swift; sourceTree = "<group>"; };
@@ -161,6 +163,7 @@
 				B4026126281CAAEE0097D7D4 /* HomeViewViewModel.swift */,
 				B4ED93172823554C006AB047 /* ExpenseListViewModel.swift */,
 				B45748E72832997F00AE963C /* SignInViewModel.swift */,
+				B45748F02832A11700AE963C /* ExpenseAuth.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -375,6 +378,7 @@
 				B4026118281AEF090097D7D4 /* PageView.swift in Sources */,
 				B4026127281CAAEE0097D7D4 /* HomeViewViewModel.swift in Sources */,
 				B402611A281AF0830097D7D4 /* ExpenseListView.swift in Sources */,
+				B45748F12832A11700AE963C /* ExpenseAuth.swift in Sources */,
 				B45748CB282EA38600AE963C /* EmptyStateViewModifier.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
