@@ -7,9 +7,10 @@
 
 import Foundation
 import RealmSwift
+import FirebaseFirestoreSwift
 
-struct ExpenseRemoteModel {
-    let id: UUID
+struct ExpenseRemoteModel: Codable {
+    var id: String?
     let value: Double
     let category: ExpenseCategory
     let paymentMethod: PaymentMethod
@@ -36,7 +37,7 @@ class ExpenseModel: Object, ObjectKeyIdentifiable {
     
 }
 
-enum ExpenseCategory: Int, PersistableEnum, CaseIterable {
+enum ExpenseCategory: Int, PersistableEnum, CaseIterable, Codable {
     
     case debtLoan
     case bills
@@ -100,7 +101,7 @@ enum ExpenseCategory: Int, PersistableEnum, CaseIterable {
     }
 }
 
-enum PaymentMethod: Int, PersistableEnum, CaseIterable {
+enum PaymentMethod: Int, PersistableEnum, CaseIterable, Codable {
     
     case creditCard
     case cash

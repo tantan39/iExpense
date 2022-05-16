@@ -8,5 +8,6 @@
 import Foundation
 
 protocol ExpenseLoader {
+    func fetchExpenses() async throws -> [ExpenseModel]
     func addExpense(_ item: ExpenseModel)
 }
