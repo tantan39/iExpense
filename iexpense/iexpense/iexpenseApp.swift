@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Resolver
 
 @main
 struct iexpenseApp: App {
@@ -15,5 +16,16 @@ struct iexpenseApp: App {
         WindowGroup {
             ContentView()
         }
+    }
+}
+
+extension Resolver: ResolverRegistering {
+    public static func registerAllServices() {
+        register {
+            ExpenseAuth()
+        }
+        .scope(.application)
+
+        .scope(.application)
     }
 }

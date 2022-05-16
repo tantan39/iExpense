@@ -30,6 +30,9 @@
 		B45748DF282EB64100AE963C /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = B45748DE282EB64100AE963C /* FirebaseFirestoreSwift */; };
 		B45748E1282EF2E900AE963C /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B45748E0282EF2E900AE963C /* SignInView.swift */; };
 		B45748E3282EF53300AE963C /* AppleSignInButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B45748E2282EF53300AE963C /* AppleSignInButton.swift */; };
+		B45748E628328F5E00AE963C /* ExpenseLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = B45748E528328F5E00AE963C /* ExpenseLoader.swift */; };
+		B45748E82832997F00AE963C /* SignInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B45748E72832997F00AE963C /* SignInViewModel.swift */; };
+		B45748EB28329E5300AE963C /* Resolver in Frameworks */ = {isa = PBXBuildFile; productRef = B45748EA28329E5300AE963C /* Resolver */; };
 		B46BF5402824213200100A19 /* MenuItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B46BF53F2824213200100A19 /* MenuItemView.swift */; };
 		B47E159028197625001A374B /* iexpenseApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B47E158F28197625001A374B /* iexpenseApp.swift */; };
 		B47E159228197625001A374B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B47E159128197625001A374B /* ContentView.swift */; };
@@ -71,6 +74,8 @@
 		B45748CF282EB4DA00AE963C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B45748E0282EF2E900AE963C /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
 		B45748E2282EF53300AE963C /* AppleSignInButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppleSignInButton.swift; sourceTree = "<group>"; };
+		B45748E528328F5E00AE963C /* ExpenseLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseLoader.swift; sourceTree = "<group>"; };
+		B45748E72832997F00AE963C /* SignInViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewModel.swift; sourceTree = "<group>"; };
 		B46BF53F2824213200100A19 /* MenuItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItemView.swift; sourceTree = "<group>"; };
 		B47E158C28197625001A374B /* iexpense.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iexpense.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B47E158F28197625001A374B /* iexpenseApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iexpenseApp.swift; sourceTree = "<group>"; };
@@ -91,6 +96,7 @@
 			files = (
 				B47E15A128197A70001A374B /* RealmSwift in Frameworks */,
 				B45748D7282EB64100AE963C /* FirebaseAuth in Frameworks */,
+				B45748EB28329E5300AE963C /* Resolver in Frameworks */,
 				B45748D5282EB64100AE963C /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */,
 				B45748DD282EB64100AE963C /* FirebaseFirestoreCombine-Community in Frameworks */,
 				B45748D9282EB64100AE963C /* FirebaseCrashlytics in Frameworks */,
@@ -154,8 +160,17 @@
 				B4026113281AECCD0097D7D4 /* NumberPadViewModel.swift */,
 				B4026126281CAAEE0097D7D4 /* HomeViewViewModel.swift */,
 				B4ED93172823554C006AB047 /* ExpenseListViewModel.swift */,
+				B45748E72832997F00AE963C /* SignInViewModel.swift */,
 			);
 			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		B45748E428328F3200AE963C /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				B45748E528328F5E00AE963C /* ExpenseLoader.swift */,
+			);
+			path = Domain;
 			sourceTree = "<group>";
 		};
 		B47E158328197625001A374B = {
@@ -180,6 +195,7 @@
 			isa = PBXGroup;
 			children = (
 				B47E158F28197625001A374B /* iexpenseApp.swift */,
+				B45748E428328F3200AE963C /* Domain */,
 				B4ED93162822E635006AB047 /* Extensions */,
 				B4026121281C7B650097D7D4 /* Components */,
 				B4026110281ADC660097D7D4 /* Models */,
@@ -244,6 +260,7 @@
 				B45748DA282EB64100AE963C /* FirebaseFirestore */,
 				B45748DC282EB64100AE963C /* FirebaseFirestoreCombine-Community */,
 				B45748DE282EB64100AE963C /* FirebaseFirestoreSwift */,
+				B45748EA28329E5300AE963C /* Resolver */,
 			);
 			productName = iexpense;
 			productReference = B47E158C28197625001A374B /* iexpense.app */;
@@ -299,6 +316,7 @@
 				B47E159D28197A70001A374B /* XCRemoteSwiftPackageReference "realm-swift" */,
 				B483ABEE282028D300F2A0CA /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */,
 				B45748D1282EB64100AE963C /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				B45748E928329E5300AE963C /* XCRemoteSwiftPackageReference "Resolver" */,
 			);
 			productRefGroup = B47E158D28197625001A374B /* Products */;
 			projectDirPath = "";
@@ -339,6 +357,7 @@
 				B4026116281AEE270097D7D4 /* ExpenseModel.swift in Sources */,
 				B45748D0282EB4DA00AE963C /* AppDelegate.swift in Sources */,
 				B4026123281C7B770097D7D4 /* MainButtonStyle.swift in Sources */,
+				B45748E82832997F00AE963C /* SignInViewModel.swift in Sources */,
 				B45748E3282EF53300AE963C /* AppleSignInButton.swift in Sources */,
 				B47E159228197625001A374B /* ContentView.swift in Sources */,
 				B49C94062819B92600D77C46 /* NumberPadView.swift in Sources */,
@@ -348,6 +367,7 @@
 				B4026120281C7B3F0097D7D4 /* CategoryView.swift in Sources */,
 				B4ED931A282355A9006AB047 /* Date+Extensions.swift in Sources */,
 				B4026112281ADC830097D7D4 /* NumberPadItem.swift in Sources */,
+				B45748E628328F5E00AE963C /* ExpenseLoader.swift in Sources */,
 				B402611E281C34F30097D7D4 /* DatePickerButtonView.swift in Sources */,
 				B4026114281AECCD0097D7D4 /* NumberPadViewModel.swift in Sources */,
 				B45748E1282EF2E900AE963C /* SignInView.swift in Sources */,
@@ -629,6 +649,14 @@
 				minimumVersion = 9.0.0;
 			};
 		};
+		B45748E928329E5300AE963C /* XCRemoteSwiftPackageReference "Resolver" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/hmlongco/Resolver.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 		B47E159D28197A70001A374B /* XCRemoteSwiftPackageReference "realm-swift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/realm/realm-swift.git";
@@ -682,6 +710,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = B45748D1282EB64100AE963C /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseFirestoreSwift;
+		};
+		B45748EA28329E5300AE963C /* Resolver */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B45748E928329E5300AE963C /* XCRemoteSwiftPackageReference "Resolver" */;
+			productName = Resolver;
 		};
 		B47E159E28197A70001A374B /* Realm */ = {
 			isa = XCSwiftPackageProductDependency;
