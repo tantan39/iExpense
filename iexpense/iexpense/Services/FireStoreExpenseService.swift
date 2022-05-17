@@ -14,7 +14,7 @@ class FireStoreExpenseService: ExpenseLoader {
     func fetchExpenses() async throws -> [ExpenseModel] {
         var results: [ExpenseRemoteModel] = []
         do {
-            let snapshot = try await db.collection("Expense").getDocuments()
+            let snapshot = try await db.collection("Expense").order(by: "date", descending: true).getDocuments()
             for document in snapshot.documents {
                 print("\(document.documentID) => \(document.data())")
                 if let item = try? document.data(as: ExpenseRemoteModel.self) {
