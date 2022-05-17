@@ -35,8 +35,8 @@ class FireStoreExpenseService: ExpenseLoader {
         db.collection("Expense").addDocument(data: [
             "id": model.id ?? "",
             "value": model.value,
-            "category": model.category,
-            "paymentMethod": model.paymentMethod,
+            "category": model.category.rawValue,
+            "paymentMethod": model.paymentMethod.rawValue,
             "date": model.date,
             "note": model.note ?? ""]) { error in
                 if let err = error {
