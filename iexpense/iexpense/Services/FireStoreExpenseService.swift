@@ -36,7 +36,16 @@ class FireStoreExpenseService: ExpenseLoader {
     }
     
     func updateExpense(_ item: ExpenseModel) {
-        
+        if let id = item.id {
+            do {
+                let model = ExpenseRemoteModel(value: item.value, category: item.category, paymentMethod: item.paymentMethod, date: item.date, note: item.note)
+                
+                let docRef = db.collection("Expense").document(id)
+                try docRef.setData(from: model, merge: true)
+            } catch {
+                
+            }
+        }
     }
     
     func deleteExpense(_ item: ExpenseModel) {

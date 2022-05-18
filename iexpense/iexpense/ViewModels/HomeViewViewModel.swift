@@ -71,6 +71,12 @@ class HomeViewViewModel: ObservableObject {
 //        } catch {
 //            print("Fail to write")
 //        }
+        item.value = Double(expenseValue) ?? 0.0
+        item.category = categorySelected
+        item.paymentMethod = paymentMethod
+        item.date = date
+        item.note = note
+        expenseService.updateExpense(item)
     }
     
     func delete(_ item: ExpenseModel) {
