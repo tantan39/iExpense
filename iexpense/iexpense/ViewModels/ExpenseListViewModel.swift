@@ -85,7 +85,6 @@ enum TimeRange: Int {
         $timeRange
             .dropFirst()
             .sink { range in
-                print("timerange set")
             switch range {
             case .thisMonth:
                 self.filteringGroupItems = self.groupItems.filter({ $0.date.isInSameMonth(as: Date()) })
