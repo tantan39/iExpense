@@ -10,7 +10,7 @@ import Foundation
 extension Date {
     var display: String {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MMM dd"
+        dateFormatter.dateFormat = "MMM YYYY"
         
         var day: String = ""
         let calendar = Calendar.current
@@ -23,7 +23,7 @@ extension Date {
             return dateFormatter.string(from: self)
         }
         
-        return day + "\n" + dateFormatter.string(from: self) 
+        return day + "\n" + dateFormatter.string(from: self)
     }
     
     func getTime() -> (year: Int, month: Int, day: Int, hour: Int, minute: Int, second: Int) {
