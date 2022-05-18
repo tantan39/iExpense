@@ -14,34 +14,19 @@ class FireStoreExpenseService: ExpenseLoader {
     func fetchExpenses() async throws -> [ExpenseModel] {
         var results: [ExpenseRemoteModel] = []
         do {
-            let snapshot = try await db.collection("Expense").order(by: "date", descending: true).getDocuments()
-            for document in snapshot.documents {
-                print("\(document.documentID) => \(document.data())")
-                if let item = try? document.data(as: ExpenseRemoteModel.self) {
-                    results.append(item)
-                }
-            }
-            
-            return results.map { ExpenseModel(value: $0.value, category: $0.category, paymentMethod: $0.paymentMethod, date: $0.date, note: $0.note )}
+            let _ = try db.collection("Expense").addDocument(from: model)
         } catch {
-            print("Got an error \(error.localizedDescription)")
+            print("Error adding document: \(error)")
         }
-        return []
     }
     
-    func addExpense(_ item: ExpenseModel) {
-        let model = ExpenseRemoteModel(id: UUID().uuidString, value: item.value, category: item.category, paymentMethod: item.paymentMethod, date: item.date, note: item.note)
+    func updateExpense(_ item: ExpenseModel) {
         
-        db.collection("Expense").addDocument(data: [
-            "id": model.id ?? "",
-            "value": model.value,
-            "category": model.category.rawValue,
-            "paymentMethod": model.paymentMethod.rawValue,
-            "date": model.date,
-            "note": model.note ?? ""]) { error in
-                if let err = error {
-                    print("Error adding document: \(err)")
-                }
-            }
+    }
+    
+    func deleteExpense(_ item: ExpenseModel) {
+        if let id = item.id {
+            db.collection("Expense").document(id).delete()
+        }
     }
 }

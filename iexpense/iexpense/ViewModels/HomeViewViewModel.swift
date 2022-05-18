@@ -9,6 +9,7 @@ import Foundation
 import RealmSwift
 import Resolver
 
+@MainActor
 class HomeViewViewModel: ObservableObject {
     @Injected var expenseService: ExpenseLoader    
     @ObservedResults(ExpenseModel.self) var items
@@ -19,7 +20,7 @@ class HomeViewViewModel: ObservableObject {
     @Published var categorySelected: ExpenseCategory = .debtLoan
     @Published var paymentMethod: PaymentMethod = .creditCard
     @Published var date: Date = .init()
-    let realm = try! Realm()
+//    let realm = try! Realm()
     
     init(expense: ExpenseModel? = nil) {
         guard let expense = expense else { return }
@@ -57,31 +58,32 @@ class HomeViewViewModel: ObservableObject {
     }
     
     func update(_ item: ExpenseModel) {
-        let realm = try! Realm()
-        let expense = realm.object(ofType: ExpenseModel.self, forPrimaryKey: item.id)
-        do {
-            try realm.write {
-                expense?.value = Double(self.expenseValue) ?? 0.0
-                expense?.note = self.note
-                expense?.category = self.categorySelected
-                expense?.paymentMethod = self.paymentMethod
-                expense?.date = self.date
-            }
-        } catch {
-            print("Fail to write")
-        }
+//        let realm = try! Realm()
+//        let expense = realm.object(ofType: ExpenseModel.self, forPrimaryKey: item.id)
+//        do {
+//            try realm.write {
+//                expense?.value = Double(self.expenseValue) ?? 0.0
+//                expense?.note = self.note
+//                expense?.category = self.categorySelected
+//                expense?.paymentMethod = self.paymentMethod
+//                expense?.date = self.date
+//            }
+//        } catch {
+//            print("Fail to write")
+//        }
     }
     
     func delete(_ item: ExpenseModel) {
-        let realm = try! Realm()
-        guard let expense = realm.object(ofType: ExpenseModel.self, forPrimaryKey: item.id) else { return }
-        do {
-            try realm.write {
-                realm.delete(expense)
-                self.objectWillChange.send()
-            }
-        } catch {
-            print("Fail to write")
-        }
+//        let realm = try! Realm()
+//        guard let expense = realm.object(ofType: ExpenseModel.self, forPrimaryKey: item.id) else { return }
+//        do {
+//            try realm.write {
+//                realm.delete(expense)
+//                self.objectWillChange.send()
+//            }
+//        } catch {
+//            print("Fail to write")
+//        }
+        expenseService.deleteExpense(item)
     }
 }

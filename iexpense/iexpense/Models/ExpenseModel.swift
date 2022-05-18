@@ -9,8 +9,8 @@ import Foundation
 import RealmSwift
 import FirebaseFirestoreSwift
 
-struct ExpenseRemoteModel: Codable {
-    var id: String?
+struct ExpenseRemoteModel: Identifiable, Codable {
+    @DocumentID var id: String?
     let value: Double
     let category: ExpenseCategory
     let paymentMethod: PaymentMethod
@@ -19,15 +19,16 @@ struct ExpenseRemoteModel: Codable {
 }
 
 class ExpenseModel: Object, ObjectKeyIdentifiable {
-    @Persisted(primaryKey: true) var id: ObjectId
+    @Persisted var id: String?
     @Persisted var value: Double = 0.0
     @Persisted var category: ExpenseCategory = .other
     @Persisted var paymentMethod: PaymentMethod = .creditCard
     @Persisted var date: Date
     @Persisted var note: String?
     
-    convenience init(value: Double, category: ExpenseCategory, paymentMethod: PaymentMethod, date: Date, note: String?) {
+    convenience init(id: String? = nil, value: Double, category: ExpenseCategory, paymentMethod: PaymentMethod, date: Date, note: String?) {
         self.init()
+        self.id = id
         self.value = value
         self.category = category
         self.paymentMethod = paymentMethod
