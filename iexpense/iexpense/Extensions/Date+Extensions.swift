@@ -23,7 +23,7 @@ extension Date {
             return dateFormatter.string(from: self)
         }
         
-        return dateFormatter.string(from: self) + " - " + day
+        return day + "\n" + dateFormatter.string(from: self) 
     }
     
     func getTime() -> (year: Int, month: Int, day: Int, hour: Int, minute: Int, second: Int) {
