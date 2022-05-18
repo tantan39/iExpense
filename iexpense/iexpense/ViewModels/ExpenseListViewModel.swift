@@ -64,22 +64,9 @@ enum TimeRange: Int {
     }
     
     init() {
-//        expenseModels.objectWillChange.sink { _ in
-//            self.groupItems.removeAll()
-//            for item in self.expenseModels {
-//                if let index = self.groupItems.firstIndex(where: { Calendar.current.isDate($0.date, inSameDayAs: item.date) }) {
-//                    self.groupItems[index].items.append(item)
-//                } else {
-//                    let newGroup = GroupExpense(date: item.date, items: [item])
-//                    self.groupItems.append(newGroup)
-//                }
-//            }
-//            self.timeRange = .thisMonth
-//        }
-//        .store(in: &cancellabels)
-        Task {
-            do {
-                let items = try await service.fetchExpenses()
+        service.fetchExpenses { results in
+            switch results {
+            case let .success(items):
                 self.groupItems.removeAll()
                 for item in items {
                     if let index = self.groupItems.firstIndex(where: { Calendar.current.isDate($0.date, inSameDayAs: item.date) }) {
@@ -90,8 +77,8 @@ enum TimeRange: Int {
                     }
                 }
                 self.timeRange = .thisMonth
-            } catch {
-                
+            default:
+                    break
             }
         }
         

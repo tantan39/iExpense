@@ -11,8 +11,23 @@ import Firebase
 class FireStoreExpenseService: ExpenseLoader {
     let db = Firestore.firestore()
     
-    func fetchExpenses() async throws -> [ExpenseModel] {
+    func fetchExpenses(completion: @escaping (Result<[ExpenseModel], Error>) -> Void) {
         var results: [ExpenseRemoteModel] = []
+        db.collection("Expense").order(by: "date", descending: true)
+            .addSnapshotListener { querySnapshot, error in
+                if let snapshot = querySnapshot {
+                    results = snapshot.documents.compactMap({
+                        return try? $0.data(as: ExpenseRemoteModel.self)
+                    })
+                    let items = results.map { ExpenseModel(id: $0.id ?? UUID().uuidString, value: $0.value, category: $0.category, paymentMethod: $0.paymentMethod, date: $0.date, note: $0.note )}
+                    completion(.success(items))
+                }
+            }
+    }
+    
+    func addExpense(_ item: ExpenseModel) {
+        let model = ExpenseRemoteModel(value: item.value, category: item.category, paymentMethod: item.paymentMethod, date: item.date, note: item.note)
+        
         do {
             let _ = try db.collection("Expense").addDocument(from: model)
         } catch {
