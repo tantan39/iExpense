@@ -34,6 +34,7 @@ enum TabItem: Int, CaseIterable {
 
 struct PageView: View {
     @State private var tabSelection: TabItem = .transaction
+    @State private var showUserProfile: Bool = false
     
     var body: some View {
         let _ = print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!.path)
@@ -48,7 +49,7 @@ struct PageView: View {
                 Spacer()
                 
                 Button {
-                    
+                    showUserProfile = true
                 } label: {
                     Image(systemName: "person.fill")
                         .resizable()
@@ -81,6 +82,9 @@ struct PageView: View {
                     print(verticalAmount < 0 ? "up swipe" : "down swipe")
                 }
             }))
+        }
+        .sheet(isPresented: $showUserProfile) {
+            Text("Profile view")
         }
     }
 }
