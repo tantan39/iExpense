@@ -10,9 +10,9 @@ import Foundation
 struct User {
     let id: String
     let displayName: String?
-    let isAnnonymous: Bool
+    let isAnonymous: Bool
 }
 
 protocol AuthenticateService {
-    func annonymousSignIn() async throws -> User?
+    func anonymousSignIn() async throws -> User?
 }

@@ -12,6 +12,6 @@ class SignInViewModel: ObservableObject {
     @Injected var authenticateService: AuthenticateService
     
     func signInAnonymously() async throws -> User? {
-        return try await authenticateService.annonymousSignIn()
+        return try await authenticateService.anonymousSignIn()
     }
 }
