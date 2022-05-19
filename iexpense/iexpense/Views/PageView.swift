@@ -46,6 +46,15 @@ struct PageView: View {
                 }
                 
                 Spacer()
+                
+                Button {
+                    
+                } label: {
+                    Image(systemName: "person.fill")
+                        .resizable()
+                        .frame(width: 30, height: 30)
+                }
+                .padding(.trailing, 20)
 
             }
 
