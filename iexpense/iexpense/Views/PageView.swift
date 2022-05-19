@@ -33,6 +33,7 @@ enum TabItem: Int, CaseIterable {
 }
 
 struct PageView: View {
+    @EnvironmentObject var auth: ExpenseAuth
     @State private var tabSelection: TabItem = .transaction
     @State private var showUserProfile: Bool = false
     
@@ -84,7 +85,7 @@ struct PageView: View {
             }))
         }
         .sheet(isPresented: $showUserProfile) {
-            Text("Profile view")
+            UserProfileView(user: .constant(auth.user))
         }
     }
 }

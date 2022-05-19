@@ -9,6 +9,7 @@ import SwiftUI
 
 struct UserProfileView: View {
     @Binding var user: User?
+    @Environment(\.presentationMode) var presentationMode
     
     var body: some View {
         VStack {
@@ -31,7 +32,7 @@ struct UserProfileView: View {
             Spacer()
             
             Button {
-                
+                presentationMode.wrappedValue.dismiss()
             } label: {
                 Text("Log out")
                     .foregroundColor(.teal)
