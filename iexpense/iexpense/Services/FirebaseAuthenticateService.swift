@@ -12,7 +12,7 @@ class FirebaseAuthenticateService: AuthenticateService {
     func anonymousSignIn() async throws -> User? {
         let authDataResult = try await Auth.auth().signInAnonymously()
         let authUser = authDataResult.user
-        let user = User(id: authUser.uid, displayName: authUser.displayName, isAnonymous: authUser.isAnonymous)
+        let user = User(authUser)
         return user
     }
 }

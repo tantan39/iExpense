@@ -6,11 +6,18 @@
 //
 
 import Foundation
+import Firebase
 
 struct User {
     let id: String
     let displayName: String?
     let isAnonymous: Bool
+    
+    init(_ user: FirebaseAuth.User) {
+        self.id = user.uid
+        self.displayName = user.displayName
+        self.isAnonymous = user.isAnonymous
+    }
 }
 
 protocol AuthenticateService {

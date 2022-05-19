@@ -9,5 +9,13 @@ import Combine
 import Firebase
 
 class ExpenseAuth: ObservableObject {
-    @Published var user: User?
+    var user: User?
+    
+    var currentUser: User? {
+        if let user = Auth.auth().currentUser {
+            self.user = User(user)
+            return self.user
+        }
+        return nil
+    }
 }

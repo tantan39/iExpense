@@ -13,7 +13,7 @@ struct ContentView: View {
     
     var body: some View {
         Group {
-            if let _ = Auth.auth().currentUser {
+            if let _ = auth.currentUser {
                 PageView()
                     .edgesIgnoringSafeArea([.leading, .trailing, .bottom])
             } else {
