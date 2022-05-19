@@ -37,6 +37,7 @@
 		B45748F42832A8FF00AE963C /* FireStoreExpenseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B45748F32832A8FF00AE963C /* FireStoreExpenseService.swift */; };
 		B45748F628368E8B00AE963C /* AuthenticateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B45748F528368E8B00AE963C /* AuthenticateService.swift */; };
 		B45748F828368F2E00AE963C /* FirebaseAuthenticateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B45748F728368F2E00AE963C /* FirebaseAuthenticateService.swift */; };
+		B45748FA2836998D00AE963C /* UserProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B45748F92836998D00AE963C /* UserProfileView.swift */; };
 		B46BF5402824213200100A19 /* MenuItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B46BF53F2824213200100A19 /* MenuItemView.swift */; };
 		B47E159028197625001A374B /* iexpenseApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B47E158F28197625001A374B /* iexpenseApp.swift */; };
 		B47E159228197625001A374B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B47E159128197625001A374B /* ContentView.swift */; };
@@ -84,6 +85,7 @@
 		B45748F32832A8FF00AE963C /* FireStoreExpenseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FireStoreExpenseService.swift; sourceTree = "<group>"; };
 		B45748F528368E8B00AE963C /* AuthenticateService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticateService.swift; sourceTree = "<group>"; };
 		B45748F728368F2E00AE963C /* FirebaseAuthenticateService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAuthenticateService.swift; sourceTree = "<group>"; };
+		B45748F92836998D00AE963C /* UserProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileView.swift; sourceTree = "<group>"; };
 		B46BF53F2824213200100A19 /* MenuItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItemView.swift; sourceTree = "<group>"; };
 		B47E158C28197625001A374B /* iexpense.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iexpense.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B47E158F28197625001A374B /* iexpenseApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iexpenseApp.swift; sourceTree = "<group>"; };
@@ -151,6 +153,7 @@
 			isa = PBXGroup;
 			children = (
 				B4026117281AEF090097D7D4 /* PageView.swift */,
+				B45748F92836998D00AE963C /* UserProfileView.swift */,
 				B4026119281AF0830097D7D4 /* ExpenseListView.swift */,
 				B402611F281C7B3F0097D7D4 /* CategoryView.swift */,
 				B402611B281B13520097D7D4 /* HomeView.swift */,
@@ -380,6 +383,7 @@
 				B4026123281C7B770097D7D4 /* MainButtonStyle.swift in Sources */,
 				B45748E82832997F00AE963C /* SignInViewModel.swift in Sources */,
 				B45748E3282EF53300AE963C /* AppleSignInButton.swift in Sources */,
+				B45748FA2836998D00AE963C /* UserProfileView.swift in Sources */,
 				B47E159228197625001A374B /* ContentView.swift in Sources */,
 				B45748F628368E8B00AE963C /* AuthenticateService.swift in Sources */,
 				B49C94062819B92600D77C46 /* NumberPadView.swift in Sources */,
