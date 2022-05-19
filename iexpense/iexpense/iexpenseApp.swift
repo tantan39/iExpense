@@ -25,7 +25,10 @@ extension Resolver: ResolverRegistering {
             FireStoreExpenseService() as ExpenseLoader
         }
         .scope(.application)
-
+        
+        register {
+            FirebaseAuthenticateService() as AuthenticateService
+        }
         .scope(.application)
     }
 }

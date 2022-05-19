@@ -6,18 +6,12 @@
 //
 
 import Combine
-import Firebase
-import SwiftUI
+import Resolver
 
 class SignInViewModel: ObservableObject {
+    @Injected var authenticateService: AuthenticateService
+    
     func signInAnonymously() async throws -> User? {
-        do {
-            let authDataResult = try await Auth.auth().signInAnonymously()
-            return authDataResult.user
-        } catch {
-            debugPrint("Sign in fail")
-        }
-        
-        return nil
+        return try await authenticateService.annonymousSignIn()
     }
 }
