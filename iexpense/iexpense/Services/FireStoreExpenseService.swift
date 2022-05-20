@@ -11,9 +11,11 @@ import Firebase
 class FireStoreExpenseService: ExpenseLoader {
     let db = Firestore.firestore()
     
-    func fetchExpenses(completion: @escaping (Result<[ExpenseModel], Error>) -> Void) {
+    func fetchExpenses(userId: String, completion: @escaping (Result<[ExpenseModel], Error>) -> Void) {
         var results: [ExpenseRemoteModel] = []
-        db.collection("Expense").order(by: "date", descending: true)
+        db.collection("Expense")
+            .whereField("userId", isEqualTo: userId)
+            .order(by: "date", descending: true)
             .addSnapshotListener { querySnapshot, error in
                 if let snapshot = querySnapshot {
                     results = snapshot.documents.compactMap({

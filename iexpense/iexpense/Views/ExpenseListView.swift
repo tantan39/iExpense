@@ -11,6 +11,7 @@ import Combine
 
 struct ExpenseListView: View {
     @ObservedObject var viewModel: ExpenseListViewModel = ExpenseListViewModel()
+    @EnvironmentObject var auth: ExpenseAuth
     @State var showEdit: Bool = false
     
     var body: some View {
@@ -108,6 +109,10 @@ struct ExpenseListView: View {
                 }
             }
         }
+        .onAppear(perform: {
+            guard let user = auth.user else { return }
+            viewModel.fetchExpenses(user)
+        })
         .sheet(isPresented: $showEdit) {
             HomeView(
                 viewModel: HomeViewViewModel(expense: self.viewModel.editItem!),

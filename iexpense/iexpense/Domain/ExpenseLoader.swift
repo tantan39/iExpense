@@ -8,7 +8,7 @@
 import Foundation
 
 protocol ExpenseLoader {
-    func fetchExpenses(completion: @escaping (Result<[ExpenseModel], Error>) -> Void)
+    func fetchExpenses(userId: String, completion: @escaping (Result<[ExpenseModel], Error>) -> Void)
     func addExpense(_ item: ExpenseModel)
     func updateExpense(_ item: ExpenseModel)
     func deleteExpense(_ item: ExpenseModel)

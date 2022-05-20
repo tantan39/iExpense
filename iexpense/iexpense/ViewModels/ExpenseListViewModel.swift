@@ -53,7 +53,6 @@ enum TimeRange: Int {
     @Published var filteringGroupItems: [GroupExpense] = []
     @Published var editItem: ExpenseModel?
     @Published var timeRange: TimeRange = .thisMonth
-    
     private var cancellabels = Set<AnyCancellable>()
     
     var total: Double {
@@ -64,24 +63,6 @@ enum TimeRange: Int {
     }
     
     init() {
-        service.fetchExpenses { results in
-            switch results {
-            case let .success(items):
-                self.groupItems.removeAll()
-                for item in items {
-                    if let index = self.groupItems.firstIndex(where: { Calendar.current.isDate($0.date, inSameDayAs: item.date) }) {
-                        self.groupItems[index].items.append(item)
-                    } else {
-                        let newGroup = GroupExpense(date: item.date, items: [item])
-                        self.groupItems.append(newGroup)
-                    }
-                }
-                self.timeRange = .thisMonth
-            default:
-                    break
-            }
-        }
-        
         $timeRange
             .dropFirst()
             .sink { range in
@@ -97,6 +78,26 @@ enum TimeRange: Int {
             }
         }
         .store(in: &cancellabels)
+    }
+    
+    func fetchExpenses(_ user: User) {
+        service.fetchExpenses(userId: user.id) { results in
+            switch results {
+            case let .success(items):
+                self.groupItems.removeAll()
+                for item in items {
+                    if let index = self.groupItems.firstIndex(where: { Calendar.current.isDate($0.date, inSameDayAs: item.date) }) {
+                        self.groupItems[index].items.append(item)
+                    } else {
+                        let newGroup = GroupExpense(date: item.date, items: [item])
+                        self.groupItems.append(newGroup)
+                    }
+                }
+                self.timeRange = .thisMonth
+            default:
+                break
+            }
+        }
     }
     
     func totalExpense(by group: GroupExpense) -> String {
