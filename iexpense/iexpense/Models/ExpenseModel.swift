@@ -16,6 +16,7 @@ struct ExpenseRemoteModel: Identifiable, Codable {
     let paymentMethod: PaymentMethod
     let date: Date
     let note: String?
+    let userId: String
 }
 
 class ExpenseModel: Object, ObjectKeyIdentifiable {
@@ -25,8 +26,9 @@ class ExpenseModel: Object, ObjectKeyIdentifiable {
     @Persisted var paymentMethod: PaymentMethod = .creditCard
     @Persisted var date: Date
     @Persisted var note: String?
+    @Persisted var userId: String
     
-    convenience init(id: String? = nil, value: Double, category: ExpenseCategory, paymentMethod: PaymentMethod, date: Date, note: String?) {
+    convenience init(id: String? = nil, value: Double, category: ExpenseCategory, paymentMethod: PaymentMethod, date: Date, note: String?, userId: String) {
         self.init()
         self.id = id
         self.value = value
@@ -34,6 +36,7 @@ class ExpenseModel: Object, ObjectKeyIdentifiable {
         self.paymentMethod = paymentMethod
         self.date = date
         self.note = note
+        self.userId = userId
     }
     
 }

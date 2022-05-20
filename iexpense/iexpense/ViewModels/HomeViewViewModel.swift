@@ -11,9 +11,9 @@ import Resolver
 
 @MainActor
 class HomeViewViewModel: ObservableObject {
-    @Injected var expenseService: ExpenseLoader    
+    @Injected var expenseService: ExpenseLoader
     @ObservedResults(ExpenseModel.self) var items
-    
+    var auth: ExpenseAuth?
     var editItem: ExpenseModel?
     @Published var expenseValue: String = ""
     @Published var note: String? = ""
@@ -48,11 +48,13 @@ class HomeViewViewModel: ObservableObject {
     }
     
     func addExpense() {
+        guard let auth = self.auth, let user = auth.user else { return }
         let item = ExpenseModel(value: Double(expenseValue) ?? 0.0,
                                 category: categorySelected,
                                 paymentMethod: paymentMethod,
                                 date: date,
-                                note: note)
+                                note: note,
+                                userId: user.id)
 //        $items.append(item)
         expenseService.addExpense(item)
     }

@@ -126,9 +126,9 @@ struct ExpenseListView_Previews: PreviewProvider {
 
 #if DEBUG
 let items: [ExpenseModel] = [
-    ExpenseModel(value: 200, category: .debtLoan, paymentMethod: .creditCard, date: .init(), note: "a Note"),
-    ExpenseModel(value: 28.50, category: .children, paymentMethod: .creditCard, date: .init(), note: "another Note"),
-    ExpenseModel(value: 1500, category: .family, paymentMethod: .cash, date: .init(), note: nil),
-    ExpenseModel(value: 11.58, category: .grocery, paymentMethod: .digitalWallet, date: .init(), note: "a Note"),
+    ExpenseModel(value: 200, category: .debtLoan, paymentMethod: .creditCard, date: .init(), note: "a Note", userId: UUID().uuidString),
+    ExpenseModel(value: 28.50, category: .children, paymentMethod: .creditCard, date: .init(), note: "another Note", userId: UUID().uuidString),
+    ExpenseModel(value: 1500, category: .family, paymentMethod: .cash, date: .init(), note: nil, userId: UUID().uuidString),
+    ExpenseModel(value: 11.58, category: .grocery, paymentMethod: .digitalWallet, date: .init(), note: "a Note", userId: UUID().uuidString),
 ]
 #endif

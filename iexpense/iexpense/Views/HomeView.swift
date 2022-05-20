@@ -12,6 +12,7 @@ struct HomeView: View {
     @ObservedObject var viewModel: HomeViewViewModel = HomeViewViewModel()
     @ObservedObject var padViewModel: NumberPadViewModel = NumberPadViewModel()
     @Environment(\.presentationMode) var presentationMode
+    @EnvironmentObject var auth: ExpenseAuth
     
     var body: some View {
         GeometryReader { _ in
@@ -108,6 +109,9 @@ struct HomeView: View {
                 
             }
         }
+        .onAppear(perform: {
+            viewModel.auth = auth
+        })
         .onReceive(padViewModel.$value, perform: { value in
             guard !value.isEmpty else { return }
             viewModel.expenseValue = value
