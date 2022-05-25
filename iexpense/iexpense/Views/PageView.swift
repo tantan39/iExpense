@@ -38,7 +38,7 @@ struct PageView: View {
     @State private var showUserProfile: Bool = false
     
     var body: some View {
-        let _ = print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!.path)
+//        let _ = print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!.path)
         VStack {
             HStack {
                 ForEach (TabItem.allCases, id: \.self) { tabItem in

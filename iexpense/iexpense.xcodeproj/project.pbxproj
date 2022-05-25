@@ -38,6 +38,7 @@
 		B45748F628368E8B00AE963C /* AuthenticateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B45748F528368E8B00AE963C /* AuthenticateService.swift */; };
 		B45748F828368F2E00AE963C /* FirebaseAuthenticateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B45748F728368F2E00AE963C /* FirebaseAuthenticateService.swift */; };
 		B45748FA2836998D00AE963C /* UserProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B45748F92836998D00AE963C /* UserProfileView.swift */; };
+		B45748FC283C083300AE963C /* AppManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B45748FB283C083300AE963C /* AppManager.swift */; };
 		B46BF5402824213200100A19 /* MenuItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B46BF53F2824213200100A19 /* MenuItemView.swift */; };
 		B47E159028197625001A374B /* iexpenseApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B47E158F28197625001A374B /* iexpenseApp.swift */; };
 		B47E159228197625001A374B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B47E159128197625001A374B /* ContentView.swift */; };
@@ -86,6 +87,7 @@
 		B45748F528368E8B00AE963C /* AuthenticateService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticateService.swift; sourceTree = "<group>"; };
 		B45748F728368F2E00AE963C /* FirebaseAuthenticateService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAuthenticateService.swift; sourceTree = "<group>"; };
 		B45748F92836998D00AE963C /* UserProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileView.swift; sourceTree = "<group>"; };
+		B45748FB283C083300AE963C /* AppManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppManager.swift; sourceTree = "<group>"; };
 		B46BF53F2824213200100A19 /* MenuItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItemView.swift; sourceTree = "<group>"; };
 		B47E158C28197625001A374B /* iexpense.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iexpense.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B47E158F28197625001A374B /* iexpenseApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iexpenseApp.swift; sourceTree = "<group>"; };
@@ -227,6 +229,7 @@
 				B47E159328197626001A374B /* Assets.xcassets */,
 				B45748CC282EB3D800AE963C /* GoogleService-Info.plist */,
 				B45748CF282EB4DA00AE963C /* AppDelegate.swift */,
+				B45748FB283C083300AE963C /* AppManager.swift */,
 				B47E159528197626001A374B /* Preview Content */,
 			);
 			path = iexpense;
@@ -401,6 +404,7 @@
 				B4026118281AEF090097D7D4 /* PageView.swift in Sources */,
 				B4026127281CAAEE0097D7D4 /* HomeViewViewModel.swift in Sources */,
 				B402611A281AF0830097D7D4 /* ExpenseListView.swift in Sources */,
+				B45748FC283C083300AE963C /* AppManager.swift in Sources */,
 				B45748F12832A11700AE963C /* ExpenseAuth.swift in Sources */,
 				B45748F828368F2E00AE963C /* FirebaseAuthenticateService.swift in Sources */,
 				B45748CB282EA38600AE963C /* EmptyStateViewModifier.swift in Sources */,
