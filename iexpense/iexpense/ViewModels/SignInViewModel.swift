@@ -7,11 +7,16 @@
 
 import Combine
 import Resolver
+import Foundation
 
 class SignInViewModel: ObservableObject {
     @Injected var authenticateService: AuthenticateService
     
     func signInAnonymously() async throws -> User? {
-        return try await authenticateService.anonymousSignIn()
+        let user = try await authenticateService.anonymousSignIn()
+        if let encoded = try? JSONEncoder().encode(user) {
+            UserDefaults.standard.set(encoded, forKey: "User")
+        }
+        return user
     }
 }

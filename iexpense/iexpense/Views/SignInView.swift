@@ -35,7 +35,6 @@ struct SignInView: View {
                 Task {
                     let user = try await viewModel.signInAnonymously()
                     auth.user = user
-                    auth.isAuthenticated = true
                 }
                 
             } label: {

@@ -10,8 +10,7 @@ import Firebase
 
 class ExpenseAuth: ObservableObject {
     @Published var user: User?
-    @Published var isAuthenticated: Bool = false
-    
+
     var currentUser: User? {
         if let user = Auth.auth().currentUser {
             self.user = User(user)

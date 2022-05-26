@@ -13,13 +13,21 @@ struct ContentView: View {
     
     var body: some View {
         Group {
-            if auth.isAuthenticated {
+            if let _ = self.auth.user {
                 PageView()
                     .edgesIgnoringSafeArea([.leading, .trailing, .bottom])
             } else {
                 SignInView()
             }
         }
+        .onAppear(perform: {
+            if let data = UserDefaults.standard.object(forKey: "User") as? Data {
+                let decoder = JSONDecoder()
+                if let savedData = try? decoder.decode(User.self, from: data) {
+                    self.auth.user = savedData
+                }
+            }
+        })
         .environmentObject(auth)
     }
 }

@@ -8,7 +8,7 @@
 import Foundation
 import Firebase
 
-struct User {
+struct User: Codable {
     let id: String
     let displayName: String?
     let isAnonymous: Bool
