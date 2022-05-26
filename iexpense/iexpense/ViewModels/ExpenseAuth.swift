@@ -13,7 +13,6 @@ class ExpenseAuth: ObservableObject {
 
     var currentUser: User? {
         if let user = Auth.auth().currentUser {
-            self.user = User(user)
             return self.user
         }
         return nil
