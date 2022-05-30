@@ -37,7 +37,7 @@ enum HomeType: Identifiable, View {
 struct HomeView: View {
     @ObservedObject var viewModel: HomeViewViewModel = HomeViewViewModel()
     @ObservedObject var padViewModel: NumberPadViewModel = NumberPadViewModel()
-    @Environment(\.presentationMode) var presentationMode
+    @Environment(\.dismiss) var dismiss
     @EnvironmentObject var auth: ExpenseAuth
     
     var body: some View {
@@ -47,7 +47,7 @@ struct HomeView: View {
                     HStack {
                         Button {
                             viewModel.delete(editItem)
-                            presentationMode.wrappedValue.dismiss()
+                            dismiss()
                         } label: {
                             Image(systemName: "trash.fill")
                                 .resizable()
@@ -64,7 +64,7 @@ struct HomeView: View {
                         Spacer()
                         
                         Button {
-                            presentationMode.wrappedValue.dismiss()
+                            dismiss()
                         } label: {
                             Image(systemName: "xmark.circle.fill")
                                 .resizable()
@@ -114,7 +114,7 @@ struct HomeView: View {
                     Button {
                         if let editItem = viewModel.editItem {
                             viewModel.update(editItem)
-                            presentationMode.wrappedValue.dismiss()
+                            dismiss()
                         } else {
                             viewModel.addExpense()
                             padViewModel.value = ""
