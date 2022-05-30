@@ -112,9 +112,13 @@ struct ExpenseListView: View {
             guard let user = auth.user else { return }
             viewModel.fetchExpenses(user)
         })
-        .sheet(item: $homeType) { hometype in
+        .sheet(item: $homeType, onDismiss: {
+            guard let user = auth.user else { return }
+            viewModel.fetchExpenses(user)
+        }, content: { hometype in
             hometype
-        }
+        })
+
     }
 }
 
