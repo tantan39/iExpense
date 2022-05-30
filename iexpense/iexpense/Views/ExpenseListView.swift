@@ -12,7 +12,7 @@ import Combine
 struct ExpenseListView: View {
     @ObservedObject var viewModel: ExpenseListViewModel = ExpenseListViewModel()
     @EnvironmentObject var auth: ExpenseAuth
-    @State var showEdit: Bool = false
+    @State var homeType: HomeType?
     
     var body: some View {
         VStack {
@@ -96,8 +96,7 @@ struct ExpenseListView: View {
                                     .padding(.bottom)
                                     .contentShape(Rectangle())
                                     .onTapGesture {
-                                        self.viewModel.editItem = item.wrappedValue
-                                        showEdit.toggle()
+                                        homeType = .update(item.wrappedValue)
                                     }
                             }
                             .listRowSeparator(.hidden)
@@ -113,12 +112,8 @@ struct ExpenseListView: View {
             guard let user = auth.user else { return }
             viewModel.fetchExpenses(user)
         })
-        .sheet(isPresented: $showEdit) {
-            HomeView(
-                viewModel: HomeViewViewModel(expense: self.viewModel.editItem!),
-                padViewModel: NumberPadViewModel(
-                    value: "\(self.viewModel.editItem?.value ?? 0.0)",
-                    note: self.viewModel.editItem?.note ?? ""))
+        .sheet(item: $homeType) { hometype in
+            hometype
         }
     }
 }

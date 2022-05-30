@@ -8,6 +8,32 @@
 import SwiftUI
 import Combine
 
+enum HomeType: Identifiable, View {
+    case new
+    case update(ExpenseModel)
+    
+    var id: String {
+        switch self {
+        case .new:
+            return "New"
+        case .update(_):
+            return "Update"
+        }
+    }
+    
+    var body: some View {
+        switch self {
+        case .new:
+            HomeView()
+        case .update(let expenseModel):
+            HomeView(
+                viewModel: HomeViewViewModel(expense: expenseModel),
+                padViewModel: NumberPadViewModel(value: "\(expenseModel.value)", note: expenseModel.note ?? "")
+            )
+        }
+    }
+}
+
 struct HomeView: View {
     @ObservedObject var viewModel: HomeViewViewModel = HomeViewViewModel()
     @ObservedObject var padViewModel: NumberPadViewModel = NumberPadViewModel()
