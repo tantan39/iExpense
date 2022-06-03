@@ -86,6 +86,7 @@ struct PageView: View {
         }
         .sheet(isPresented: $showUserProfile) {
             UserProfileView(user: .constant(auth.user))
+                .environmentObject(auth)
         }
     }
 }

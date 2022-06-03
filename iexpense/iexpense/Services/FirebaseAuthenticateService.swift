@@ -15,4 +15,8 @@ class FirebaseAuthenticateService: AuthenticateService {
         let user = User(authUser)
         return user
     }
+    
+    func logOut() async throws {
+        try Auth.auth().signOut()
+    }
 }

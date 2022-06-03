@@ -17,4 +17,8 @@ class ExpenseAuth: ObservableObject {
         }
         return nil
     }
+    
+    func resetUser() {
+        user = nil
+    }
 }

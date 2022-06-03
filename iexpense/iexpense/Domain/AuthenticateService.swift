@@ -22,4 +22,5 @@ struct User: Codable {
 
 protocol AuthenticateService {
     func anonymousSignIn() async throws -> User?
+    func logOut() async throws -> Void
 }

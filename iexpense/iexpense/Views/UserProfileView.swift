@@ -6,10 +6,12 @@
 //
 
 import SwiftUI
-
+import Resolver
 struct UserProfileView: View {
     @Binding var user: User?
     @Environment(\.presentationMode) var presentationMode
+    @Injected var service: AuthenticateService
+    @EnvironmentObject var auth: ExpenseAuth
     
     var body: some View {
         VStack {
@@ -33,6 +35,10 @@ struct UserProfileView: View {
             
             Button {
                 presentationMode.wrappedValue.dismiss()
+                Task {
+                    try await service.logOut()
+                    auth.resetUser()
+                }
             } label: {
                 Text("Log out")
                     .foregroundColor(.teal)
