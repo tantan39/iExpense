@@ -11,7 +11,11 @@ import Firebase
 class FirebaseAuthenticateService: AuthenticateService {
     func anonymousSignIn() async throws -> User? {
         let authDataResult = try await Auth.auth().signInAnonymously()
+        let changeRequest = Auth.auth().currentUser?.createProfileChangeRequest()
+        changeRequest?.displayName = "Anonyous"
+        try await changeRequest?.commitChanges()
         let authUser = authDataResult.user
+        
         let user = User(authUser)
         return user
     }
