@@ -18,6 +18,7 @@ struct ExpenseCellView: View {
                 VStack(alignment: .leading) {
                     Text(item.category.title)
                         .font(.headline)
+                        .foregroundColor(Color("darkGray"))
                     
                     if let note = item.note, !note.isEmpty {
                         Text(note)
@@ -31,6 +32,7 @@ struct ExpenseCellView: View {
                 let value = String(format: "$%.2f", item.value)
                 Text(value)
                     .font(.headline)
+                    .foregroundColor(Color("darkGray"))
             }
         }
     }

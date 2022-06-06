@@ -15,6 +15,7 @@ struct NumberPadView: View {
         VStack {
             HStack {
                 Text(viewModel.value.isEmpty ? "$0.00" : viewModel.value.toCurrencyFormat())
+                    .foregroundColor(Color("darkGray"))
                     .fontWeight(.semibold)
                     .font(.largeTitle)
                     .padding(.leading, -4)
@@ -34,7 +35,7 @@ struct NumberPadView: View {
                             .font(.largeTitle)
                             .fontWeight(.bold)
                         
-                            .foregroundColor(viewModel.value.isEmpty ? .gray : .black)
+                            .foregroundColor(viewModel.value.isEmpty ? .gray : Color("darkGray"))
                             .padding()
                             .disabled(viewModel.value.isEmpty)
                             .onTapGesture {
@@ -43,6 +44,7 @@ struct NumberPadView: View {
                     } else {
                         Text("\(item.wrappedValue.title)")
                             .font(.largeTitle)
+                            .foregroundColor(Color("darkGray"))
                             .fontWeight(.semibold)
                             .padding()
                             .onTapGesture {

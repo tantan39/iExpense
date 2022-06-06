@@ -16,6 +16,7 @@ struct CategoryView: View {
     var body: some View {
         HStack {
             Text(title)
+                .foregroundColor(Color("darkGray"))
                 .fontWeight(.semibold)
                 .font(.headline)
         }

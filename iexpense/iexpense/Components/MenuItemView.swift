@@ -32,7 +32,7 @@ struct MenuItemView: View {
                 }
             }
             .background(RoundedRectangle(cornerRadius: 10)
-                            .foregroundColor(selected ? .black : .gray))
+                            .foregroundColor(selected ? Color("darkGray") : .gray))
             .animation(.default, value: selected)
 
         }

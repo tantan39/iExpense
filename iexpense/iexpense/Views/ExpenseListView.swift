@@ -24,33 +24,37 @@ struct ExpenseListView: View {
                                 viewModel.timeRange = .thisMonth
                             } label: {
                                 Text(TimeRange.thisMonth.title)
+                                    .foregroundColor(Color("darkGray"))
                             }
                             
                             Button {
                                 viewModel.timeRange = .lastMonth
                             } label: {
                                 Text(TimeRange.lastMonth.title)
+                                    .foregroundColor(Color("darkGray"))
                             }
 
                             Button {
                                 viewModel.timeRange = .thisYear
                             } label: {
                                 Text(TimeRange.thisYear.title)
+                                    .foregroundColor(Color("darkGray"))
                             }
                             
                             Button {
                                 viewModel.timeRange = .lastYear
                             } label: {
                                 Text(TimeRange.lastYear.title)
+                                    .foregroundColor(Color("darkGray"))
                             }
                         } label: {
                             HStack {
                                 Text(viewModel.timeRange.title)
                                     .font(.title)
-                                    .foregroundColor(.black)
+                                    .foregroundColor(Color("darkGray"))
                                     .fontWeight(.bold)
                                 Image(systemName: "chevron.down")
-                                    .foregroundColor(.black)
+                                    .foregroundColor(Color("darkGray"))
                             }
                         }
                         
@@ -58,10 +62,12 @@ struct ExpenseListView: View {
                         
                         VStack(alignment: .leading) {
                             Text("Total")
+                                .foregroundColor(Color("darkGray"))
                                 .font(.title)
                                 .fontWeight(.bold)
                             let value = String(format: "$%.2f", viewModel.total)
                             Text(value)
+                                .foregroundColor(Color("darkGray"))
                                 .font(.title)
                                 .fontWeight(.bold)
                         }
@@ -76,16 +82,18 @@ struct ExpenseListView: View {
                                     Text("\(group.wrappedValue.date.getTime().day)")
                                         .font(.title)
                                         .fontWeight(.bold)
-                                        .foregroundColor(.black)
+                                        .foregroundColor(Color("darkGray"))
                                     Spacer()
                                 }
                                 
                                 Text(group.wrappedValue.date.display)
+                                    .foregroundColor(Color("darkGray"))
                                     .font(.headline)
                                     .lineSpacing(-4)
                                 Spacer()
                                 Text(viewModel.totalExpense(by: group.wrappedValue))
                                     .font(.headline)
+                                    .foregroundColor(Color("darkGray"))
                             }
                             .padding(.bottom, 10)
                             
