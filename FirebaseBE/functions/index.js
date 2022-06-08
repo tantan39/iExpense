@@ -7,3 +7,7 @@ const functions = require("firebase-functions");
 //   functions.logger.info("Hello logs!", {structuredData: true});
 //   response.send("Hello from Firebase!");
 // });
+
+exports.helloWorld = functions.https.onRequest((req,res) => {
+    res.send('Hello world');
+});
